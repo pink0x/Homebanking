@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/pages/styles.css">
+    <title>Sprint 1</title>
+</head>
+<body>
+
+
+    <div id="app" >
+
+        <header class="bg-blue-600 h-32 flex justify-center items-center">
+            <p class="text-xl text-white font-semibold">TE DEBO EL ESTILO</p>
+        </header>
+
+  <main class="flex  justify-around mt-16 gap-12">
+    <section class="flex flex-col items-center gap-12 w-1/2">
+        
+        <article class="flex items-center flex-col gap-4 ">
+            <h1 class="text-3xl font-semibold text-blue-700 "> Client Manager</h1>
+        <form action="" class="flex flex-col p-4 items-center bg-slate-200  rounded-lg gap-6">
+            <div class="flex flex-col">
+                <Label id="name">First Name:</Label>
+                <input v-model="name" type="text" name="name" id="name"  class="w-[20rem]">
+            </div>
+           
+            <div class="flex flex-col">
+              <Label id="lastName">Last name:</Label>
+              <input v-model="lastName" type="text" name="lastName" id="lastName" class="w-[20rem]">
+           </div>
+           
+            <div class="flex flex-col">
+              <Label id="email">Email address:</Label>
+              <input v-model="email" type="email" name="email" id="email" class="w-[20rem]">
+            </div>
+
+            <input @click="createClient" type="submit" value="Add client" class="bg-blue-600 p-2 rounded-md mt-4 text-white">
+
+
+        </form>
+      </article>
+
+      <article class="flex flex-col gap-4  w-11/12">
+        <h1 class="text-3xl font-semibold text-blue-700 text-center"> Client List</h1>
+        <div class="bg-slate-200  rounded-lg gap-6 p-6 ">
+            <table  class="table-auto  w-[100%]">
+                <thead>
+                    <tr class="text-left  mb-2 bg-gray-500/10">
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email </th>
+                    </tr>                
+                </thead>
+                <tbody >               
+                    
+                        <template v-for="client of data" class="flex flex-row gap-2 ">
+                            <tr>
+                                   <td> {{client.name}} </th>
+                                    <td> {{client.lastName}} </th>
+                                    <td> {{client.email}} </th>
+    
+                            </tr>
+                            
+        
+                        </template>
+                       
+                    
+                </tbody>
+    
+            </table>
+
+        </div>
+        
+      </article>
+    </section>
+
+    <section class="w-1/2  gap-6 flex flex-col">
+        <h1 class="text-3xl font-semibold text-blue-700 text-center"> Client REST Response        
+        </h1>
+        <pre>
+            {{data}}
+        </pre> 
+
+    </section>
+
+  </main>
+    
+    
+
+
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/pages/index.js"></script>
+</body>
+</html>
