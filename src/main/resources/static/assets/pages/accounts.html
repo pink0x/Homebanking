@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../images/SB.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Client</title>
+  </head>
+  <body >
+    <div id="app">
+      <header class="h-32 flex flex-col items-center gap-2 mb-10">
+        <div
+          class="flex items-center gap-6 bg-azulOscuro w-full justify-center py-4"
+        >
+          <img src="../images/SB.png" alt="" class="flex h-16" />
+          <img src="../images/StandBank.png" alt="" class="flex h-8" />
+        </div>
+
+        <nav
+          class="flex justify-around w-full font-semibold text-2xl items-bottom h-10"
+        >
+          <a
+            href="#"
+            class="w-1/6 pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+            >Accounts</a
+          >
+          <a
+            href="#"
+            class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Cards</a
+          >
+          <a
+            href="#"
+            class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Loans</a
+          >
+          <a
+            href="#"
+            class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Transactions</a
+          >
+        </nav>
+      </header>
+
+      <main class="m-14">
+        <h1 class="text-5xl font-semibold text-azulOscuro">
+          Welcome back, {{data.fullName}}. 
+        </h1>
+        <div class="flex gap-28 my-24 justify-center">
+            
+          <div v-for="account of accounts" class="flex flex-col bg-verdeClaro/50 w-1/4 py-4 gap-4 rounded-xl shadow-lg p-4">
+            <p> Account number: <b>{{account.number}}</b></p>
+            <p>Balance: <b>${{account.balance}}</b></p>            
+            <p>Creation Date: <b>{{account.date}}</b></p>
+            <a v-bind:href="'account.html?id='+ account.id" class="flex self-end bg-azulOscuro p-2 rounded-md text-white font-semibold">More details</a>
+          </div>
+
+        </div>
+
+
+      </main>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <script src="accounts.js"></script>
+  </body>
+</html>

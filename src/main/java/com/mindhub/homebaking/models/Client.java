@@ -1,9 +1,9 @@
 package com.mindhub.homebaking.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Client {
@@ -11,6 +11,8 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name, lastName, email;
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    private List<Account> accounts = new ArrayList<>();
 
 
     public Client(String name, String lastName, String email) {
@@ -50,5 +52,28 @@ public class Client {
 
     public Long getId() {
         return id;
+    }
+
+    public void addAccount (Account account){
+        account.setClient(this);
+        this.accounts.add(account);
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
