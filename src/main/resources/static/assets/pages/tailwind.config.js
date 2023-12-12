@@ -6,7 +6,7 @@ tailwind.config = {
       theme: {
         extend: {
           colors: {
-            azulOscuro: "#051F53",
+            azulOscuro: "#181d31",
             verdeClaro: "#79A88C",
             beige: "#E6DDC4",
             beigeFondo: "#FFFCF1",

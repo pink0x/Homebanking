@@ -2,9 +2,13 @@ package com.mindhub.homebaking.dto;
 
 import com.mindhub.homebaking.models.Account;
 import com.mindhub.homebaking.models.Client;
+import com.mindhub.homebaking.models.Transaction;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AccountDTO {
     private Long id;
@@ -13,12 +17,18 @@ public class AccountDTO {
     private String number;
     private LocalDate date;
 
+    private List<TransactionDTO> transactions = new ArrayList<>();
+
     public AccountDTO (Account account){
         id = account.getId();
         balance = account.getBalance();
         number = account.getNumber();
         date = account.getDate();
+        transactions = account.getTransactions().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
+
     }
+
+
 
 
     public Long getId() {
@@ -52,4 +62,15 @@ public class AccountDTO {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public List<TransactionDTO> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<TransactionDTO> transactions) {
+        this.transactions = transactions;
+    }
+
+
+
 }

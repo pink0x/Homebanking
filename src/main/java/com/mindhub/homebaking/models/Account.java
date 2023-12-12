@@ -3,6 +3,8 @@ package com.mindhub.homebaking.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Account {
@@ -17,6 +19,9 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "client")
     private Client client;
+
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    private List<Transaction> transactions = new ArrayList<>();
 
 
     public Account() {
@@ -71,4 +76,19 @@ public class Account {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void addTransaction(Transaction transaction) {
+        transaction.setAccount(this);
+        this.transactions.add(transaction);
+    }
+
+
 }

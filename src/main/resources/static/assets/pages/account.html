@@ -3,14 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/SB.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <title>Account</title>
 </head>
-<body>
-    <div id="app">
-     <header>
+<body class="flex flex-col">
+    <div id="app" >
+        <header class="h-32 flex flex-col items-center gap-2 mb-10">
+            <div
+              class="flex items-center gap-6 bg-azulOscuro w-full justify-center py-4"
+            >
+              <img src="../images/SB.png" alt="" class="flex h-16" />
+              <img src="../images/StandBank.png" alt="" class="flex h-8" />
+            </div>
+    
+            <nav
+              class="flex justify-around w-full font-semibold text-2xl items-bottom h-10"
+            >
+              <a
+                href="#"
+                class="w-1/6 pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+                >Accounts</a
+              >
+              <a
+                href="#"
+                class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+                >Cards</a
+              >
+              <a
+                href="#"
+                class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+                >Loans</a
+              >
+              <a
+                href="#"
+                class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+                >Transactions</a
+              >
+            </nav>
+          </header>
+
+     <main class="flex flex-col justify-center gap-16 py-16 mx-14 grow-1">
+
+        <h1 class="text-5xl font-semibold text-azulOscuro mb-8">  Your account, <span class="text-verdeClaro">{{name}}.</span> </h1>
+
+        <section class="card text-beigeFondo flex w-1/2 flex-col gap-4 p-8 rounded-lg m-auto">
+            <div class="flex justify-around">
+                <div class="flex gap-4">
+                    <p class="text-lg">Account number:</p>
+                    <p class="text-xl text-verdeClaro font-bold">{{name}}</p>
+                </div >
+                <div class="flex gap-4">
+                    <p class="text-lg">Creation date:</p>
+                    <p  class="text-xl font-bold">{{date}}</p>
+                </div>
+            </div>
+            
+            <div class="flex gap-4 justify-center items-center">
+                <p class="text-lg">Balance:</p>
+                <p  class="text-4xl font-bold">${{balance}}</p>
+            </div>
+        </section>
+
+      <section class="flex flex-col  w-2/3 m-auto gap-6">
+        <h1 class="text-azulOscuro text-2xl font-semibold"> Transactions Resume:</h1>
+        <div class="bg-slate-100/70  rounded-lg gap-6 p-6  ">
+            <table  class="table-auto w-[100%] gap-4">
+                <thead class="mb-8">
+                    <tr class="text-left   text-azulOscuro">
+                        <th>Type:</th>
+                        <th>Date:</th>
+                        <th>Description </th>
+                        <th>Amount </th>
+                    </tr>                
+                </thead>
+                <tbody >               
+                    
+                        <template v-for="transaction of transactions" class="flex flex-row gap-2 mt-4 ">
+                            <tr class="border-b-[1px] border-azulOscuro/20">    
+                                   <td v-if="type === CREDIT" class="text-verdeClaro font-semibold" > {{transaction.type}} </td>
+                                    <td v-else class="text-rose/600 font-semibold"> {{transaction.type}} </td>
+                                    <td> {{transaction.date}} </td>
+                                    <td> {{transaction.description}} </td>
+                                    <td> ${{transaction.amount}} </td>
+    
+                            </tr>
+                            
         
-     </header>
+                        </template>
+                       
+                    
+                </tbody>
+    
+            </table>
+
+        </div>
+
+      </section>
+
+
+        <!-- <div v-for="transaction of transactions">
+        <p> {{transaction.description}} </p>
+    </div> -->
+     </main>
+
+     <footer class="bg-azulOscuro h-24 flex grow-0">
+
+     </footer>
 
 
 
@@ -22,6 +121,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
     <script src="account.js"></script> 
 </body>
 </html>

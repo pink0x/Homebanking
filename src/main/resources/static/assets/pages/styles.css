@@ -1,6 +1,26 @@
-
 body{
-    background-color: rgba(255, 252, 241, 1);
+    background-color: #FFFCF1;
 }
 
 
+main{
+    position:relative;
+    flex-grow: 1;
+    
+    background-image: url(../images/SBback.png);
+    object-fit: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20rem auto;
+    background-attachment: scroll;
+    
+    
+}
+
+
+
+.card{
+    background: rgb(24,29,49);
+background: linear-gradient(307deg, rgba(24,29,49,1) 0%, rgba(51,61,99,1) 77%, rgba(24,29,49,1) 100%);
+
+}

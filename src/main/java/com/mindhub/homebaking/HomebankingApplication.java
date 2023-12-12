@@ -2,8 +2,11 @@ package com.mindhub.homebaking;
 
 import com.mindhub.homebaking.models.Account;
 import com.mindhub.homebaking.models.Client;
+import com.mindhub.homebaking.models.Transaction;
+import com.mindhub.homebaking.models.TransactionType;
 import com.mindhub.homebaking.repositories.AccountRepository;
 import com.mindhub.homebaking.repositories.ClientRepository;
+import com.mindhub.homebaking.repositories.TransactionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +23,8 @@ public class HomebankingApplication {
 
     @Bean
 	public CommandLineRunner initData (ClientRepository clientRepository,
-									   AccountRepository accountRepository){
+									   AccountRepository accountRepository,
+									   TransactionRepository transactionRepository){
 
 
 		return args -> {
@@ -37,8 +41,6 @@ public class HomebankingApplication {
 
 
 		   Account account1= new Account("VIN-001",5000d, LocalDate.now());
-
-
 		   Account account2 = new Account("VIN-002", 7500d,LocalDate.now().plusDays(1));
 
 
@@ -47,7 +49,27 @@ public class HomebankingApplication {
 
 			accountRepository.save(account1);
 			accountRepository.save(account2);
-			System.out.println(melba);
+
+			Transaction trans1 = new Transaction(TransactionType.CREDIT, 1200, "Happy birthday, aint Melba!", LocalDate.now() );
+			Transaction trans2 = new Transaction(TransactionType.DEBIT, -850, "Rent payment", LocalDate.now());
+
+			Transaction trans3 = new Transaction(TransactionType.CREDIT, 345, "Pension payment", LocalDate.now() );
+			Transaction trans4 = new Transaction(TransactionType.DEBIT, -1500, "Plane tickets", LocalDate.now());
+
+			account1.addTransaction (trans1);
+			account1.addTransaction(trans2);
+
+			account2.addTransaction (trans3);
+			account2.addTransaction(trans4);
+
+
+			transactionRepository.save(trans1);
+			transactionRepository.save(trans2);
+
+			transactionRepository.save(trans3);
+			transactionRepository.save(trans4);
+
+
 		};
 	}
 }
