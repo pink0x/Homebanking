@@ -9,7 +9,7 @@ let app = createApp({
       date: "",
       transactions: [],
     //   transaction:{},
-    //   type:"",
+      type:"",
     };
   },
 
@@ -25,9 +25,9 @@ let app = createApp({
         this.date = this.data.date;
         this.balance = this.data.balance;
         this.transactions = this.data.transactions
-        // this.transaction=this.transactions.transaction
-        // this.type= this.transaction.type
-        console.log(this.transaction)
+        
+        this.type= this.transactions.type
+        console.log(this.transactions)
       })
       .catch((error) => console.log(error));
 

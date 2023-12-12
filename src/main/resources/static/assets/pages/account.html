@@ -81,8 +81,8 @@
                     
                         <template v-for="transaction of transactions" class="flex flex-row gap-2 mt-4 ">
                             <tr class="border-b-[1px] border-azulOscuro/20">    
-                                   <td v-if="type === CREDIT" class="text-verdeClaro font-semibold" > {{transaction.type}} </td>
-                                    <td v-else class="text-rose/600 font-semibold"> {{transaction.type}} </td>
+                                   <td v-if="transaction.type === 'CREDIT'" class="text-verdeClaro font-semibold" > {{transaction.type}} </td>
+                                    <td v-else class="text-rose-600 font-semibold"> {{transaction.type}} </td>
                                     <td> {{transaction.date}} </td>
                                     <td> {{transaction.description}} </td>
                                     <td> ${{transaction.amount}} </td>
