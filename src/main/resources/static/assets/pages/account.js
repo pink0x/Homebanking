@@ -27,7 +27,7 @@ let app = createApp({
         this.transactions = this.data.transactions
         
         this.type= this.transactions.type
-        console.log(this.transactions)
+        console.log(this.data)
       })
       .catch((error) => console.log(error));
 

@@ -43,8 +43,8 @@
         </nav>
       </header>
 
-      <main class="mx-14 grow-1">
-        <h1 class="text-5xl font-semibold text-azulOscuro mb-8">  Welcome back, <span class="text-verdeClaro">{{data.fullName}}.</span>  </h1>
+      <main class="mx-14 grow-1 h-[60rem]">
+        <h1 class="text-5xl font-semibold text-azulOscuro mb-8">  Welcome back, <span class="text-verdeClaro">{{data.name}}.</span>  </h1>
         <h2 class="text-3xl font-semibold text-azulOscuro">Please, select an account.</h2>
         <div class="flex gap-28 my-24 justify-center">
             
@@ -52,10 +52,38 @@
                 <p> Account number: <b>{{account.number}}</b></p>
                 <p>Balance: <b>${{account.balance}}</b></p>            
                 <p>Creation Date: <b>{{account.date}}</b></p>
-                <a v-bind:href="'account.html?id='+ account.id" class="flex self-end bg-verdeClaro p-2 rounded-md text-white font-semibold">More details</a>
+                <a v-bind:href="'account.html?id='+ account.id" class="cardButton flex self-end bg-verdeClaro p-2 rounded-md text-white font-semibold">More details</a>
               </div>
 
         </div>
+
+        <table  class="table-auto w-[100%] gap-4">
+          <thead class="mb-8">
+              <tr class="text-left   text-azulOscuro">
+                  <th>Name:</th>
+                  <th>Amount:</th>
+                  <th>Payments </th>
+                  
+              </tr>                
+          </thead>
+          <tbody >               
+              
+                  <template v-for="loan of loans" class="flex flex-row gap-2 mt-4 ">
+                      
+                              
+                              <td> {{loan.name}} </td>
+                              <td> {{loan.amount}} </td>
+                              <td> {{loan.payments}} </td>
+
+                      </tr>
+                      
+  
+                  </template>
+                 
+              
+          </tbody>
+
+      </table>
 
 
       </main>

@@ -11,8 +11,8 @@ main{
     object-fit: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 20rem auto;
-    background-attachment: scroll;
+    background-size: 20rem auto;    
+    background-attachment: fixed;
     
     
 }
@@ -23,4 +23,9 @@ main{
     background: rgb(24,29,49);
 background: linear-gradient(307deg, rgba(24,29,49,1) 0%, rgba(51,61,99,1) 77%, rgba(24,29,49,1) 100%);
 
+}
+
+.cardButton{
+    background: rgb(121,168,140);
+background: linear-gradient(307deg, rgba(121,168,140,1) 0%, rgba(179,233,201,1) 32%, rgba(123,170,142,1) 100%);
 }

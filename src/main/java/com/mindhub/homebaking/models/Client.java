@@ -3,7 +3,9 @@ package com.mindhub.homebaking.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Client {
@@ -13,6 +15,12 @@ public class Client {
     private String name, lastName, email;
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Account> accounts = new ArrayList<>();
+
+
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
+
 
 
     public Client(String name, String lastName, String email) {
@@ -65,6 +73,19 @@ public class Client {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
+
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        this.clientLoans.add(clientLoan);
     }
 
     @Override

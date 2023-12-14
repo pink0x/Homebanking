@@ -9,6 +9,7 @@ let app = createApp({
       email: "",
       accounts: [],
       accountDate: "",
+      loans: [],
     };
   },
 
@@ -26,6 +27,8 @@ let app = createApp({
           this.accounts = this.data.accounts;
           this.name = this.data.fullName;
           this.accountDate = this.accounts.date
+          this.loans = this.data.loans;
+          console.log(this.data)
         })
         .catch((error) => console.log(error));
     },
