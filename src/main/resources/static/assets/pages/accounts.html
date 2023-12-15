@@ -52,7 +52,7 @@
                 <p> Account number: <b>{{account.number}}</b></p>
                 <p>Balance: <b>${{account.balance}}</b></p>            
                 <p>Creation Date: <b>{{account.date}}</b></p>
-                <a v-bind:href="'account.html?id='+ account.id" class="cardButton flex self-end bg-verdeClaro p-2 rounded-md text-white font-semibold">More details</a>
+                <a v-bind:href="'account.html?id='+ account.id" class="cardButton flex self-end bg-verdeClaro p-2 rounded-md text-white font-semibold" >More details</a>
               </div>
 
         </div>
@@ -69,6 +69,7 @@
           <tbody >               
               
                   <template v-for="loan of loans" class="flex flex-row gap-2 mt-4 ">
+                    <tr>
                       
                               
                               <td> {{loan.name}} </td>

@@ -80,7 +80,7 @@ public class HomebankingApplication {
 			loanRepository.save(automotriz);
 
 			ClientLoan melbaHipotecario = new ClientLoan("hipotecario",400000d, 60);
-			ClientLoan melbaPersonal = new ClientLoan("personal",50000d, 60);
+			ClientLoan melbaPersonal = new ClientLoan("personal",50000d, 12);
 
 			ClientLoan juanPersonal = new ClientLoan("personal", 50000d,12);
 

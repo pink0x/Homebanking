@@ -27,5 +27,8 @@ background: linear-gradient(307deg, rgba(24,29,49,1) 0%, rgba(51,61,99,1) 77%, r
 
 .cardButton{
     background: rgb(121,168,140);
-background: linear-gradient(307deg, rgba(121,168,140,1) 0%, rgba(179,233,201,1) 32%, rgba(123,170,142,1) 100%);
+    background: linear-gradient(307deg, rgba(121,168,140,1) 0%, rgba(179,233,201,1) 32%, rgba(123,170,142,1) 100%);
+
+    text-shadow: 10px 10px 43px 35px rgba(0,0,0,0.92);
+
 }
