@@ -13,8 +13,7 @@ public class Card {
     private CardColor cardColor;
     private CardType cardType;
     private String number;
-    private String cardHolder;
-    private Integer cvv;
+     private Integer cvv;
     private LocalDate fromDate;
     private LocalDate thruDate;
 
@@ -22,11 +21,10 @@ public class Card {
     @JoinColumn(name = "client")
     private Client client;
 
-    public Card(CardColor cardColor, CardType cardType, String number, String cardHolder, Integer cvv, LocalDate fromDate, LocalDate thruDate) {
+    public Card(CardColor cardColor, CardType cardType, String number, Integer cvv, LocalDate fromDate, LocalDate thruDate) {
         this.cardColor = cardColor;
         this.cardType = cardType;
         this.number = number;
-        this.cardHolder = cardHolder;
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
@@ -61,13 +59,7 @@ public class Card {
         this.number = number;
     }
 
-    public String getCardHolder() {
-        return cardHolder;
-    }
 
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
 
     public Integer getCvv() {
         return cvv;

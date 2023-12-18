@@ -4,7 +4,7 @@ body{
 
 
 main{
-    position:relative;
+    
     flex-grow: 1;
     
     background-image: url(../images/SBback.png);
@@ -26,9 +26,23 @@ background: linear-gradient(307deg, rgba(24,29,49,1) 0%, rgba(51,61,99,1) 77%, r
 }
 
 .cardButton{
-    background: rgb(121,168,140);
-    background: linear-gradient(307deg, rgba(121,168,140,1) 0%, rgba(179,233,201,1) 32%, rgba(123,170,142,1) 100%);
-
+    background: rgb(113,143,125);
+background: linear-gradient(307deg, rgba(113,143,125,1) 0%, rgba(121,167,140,1) 32%, rgba(121,168,140,1) 67%, rgba(113,143,125,1) 100%);
     text-shadow: 10px 10px 43px 35px rgba(0,0,0,0.92);
+
+}
+
+#creditCard{
+    background-image: url(../images/CardGold.png);
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: 25rem auto; 
+}
+
+#debitCard{
+    background-image: url(../images/CardSilver.png);
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: 25rem auto; 
 
 }

@@ -1,5 +1,6 @@
 package com.mindhub.homebaking.dto;
 
+import com.mindhub.homebaking.models.Card;
 import com.mindhub.homebaking.models.Client;
 import com.mindhub.homebaking.models.ClientLoan;
 import com.mindhub.homebaking.models.Loan;
@@ -19,6 +20,8 @@ public class ClientDTO {
 
     private List <ClientLoanDTO> loans;
 
+    private List<CardDTO> cards;
+
 
 
 
@@ -29,6 +32,7 @@ public class ClientDTO {
         email= client.getEmail();
         accounts = client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
         loans = client.getClientLoans().stream().map(clientLoan -> new ClientLoanDTO(clientLoan)).collect(Collectors.toList());
+        cards = client.getClientCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
 
 
     }
@@ -62,4 +66,7 @@ public class ClientDTO {
     }
 
 
+    public List<CardDTO> getCards() {
+        return cards;
+    }
 }

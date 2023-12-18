@@ -9,39 +9,39 @@
 </head>
 <body class="flex flex-col">
     <div id="app" >
-        <header class="h-32 flex flex-col items-center gap-2 mb-10">
-            <div
-              class="flex items-center gap-6 bg-azulOscuro w-full justify-center py-4"
-            >
-              <img src="../images/SB.png" alt="" class="flex h-16" />
-              <img src="../images/StandBank.png" alt="" class="flex h-8" />
-            </div>
-    
-            <nav
-              class="flex justify-around w-full font-semibold text-2xl items-bottom h-10"
-            >
-              <a
-                href="#"
-                class="w-1/6 pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
-                >Accounts</a
-              >
-              <a
-                href="#"
-                class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
-                >Cards</a
-              >
-              <a
-                href="#"
-                class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
-                >Loans</a
-              >
-              <a
-                href="#"
-                class="w-1/6 pb-10 text-center hover:border-b-2 text-azulOscuro/50"
-                >Transactions</a
-              >
-            </nav>
-          </header>
+      <header class="flex flex-col items-center gap-2 mb-10">
+        <div
+          class="flex flex-col items-center gap-2 bg-azulOscuro w-full justify-center md:flex-row gap-6 py-4"
+        >
+          <img src="../images/SB.png" alt="" class="flex h-16" />
+          <img src="../images/StandBank.png" alt="" class="flex h-8" />
+        </div>
+
+        <nav
+          class="flex flex-col font-semibold text-lg md:flex-row md:justify-around md:w-full md:text-2xl md:items-bottom md:h-10"
+        >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+            >Accounts</a
+          >
+          <a
+            href="cards.html"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Cards</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Loans</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Transactions</a
+          >
+        </nav>
+      </header>
 
      <main class="flex flex-col justify-center gap-16 py-16 mx-14 grow-1">
 
@@ -65,6 +65,8 @@
                 <!-- {{formatMoney(balance) }}< -->
             </div>
         </section>
+
+       
 
       <section class="flex flex-col  w-2/3 m-auto gap-6">
         <h1 class="text-azulOscuro text-2xl font-semibold"> Transactions Resume:</h1>

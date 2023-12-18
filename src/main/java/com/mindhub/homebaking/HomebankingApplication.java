@@ -22,7 +22,8 @@ public class HomebankingApplication {
 									   AccountRepository accountRepository,
 									   TransactionRepository transactionRepository,
 									   LoanRepository loanRepository,
-									   ClientLoanRepository clientLoanRepository) {
+									   ClientLoanRepository clientLoanRepository,
+									   CardRepository cardRepository) {
 
 
 		return args -> {
@@ -84,6 +85,14 @@ public class HomebankingApplication {
 
 			ClientLoan juanPersonal = new ClientLoan("personal", 50000d,12);
 
+			Card melbaCard1 = new Card(CardColor.GOLD, CardType.CREDIT,"2212 5896 0089 4563", 598,LocalDate.now(),LocalDate.now().plusYears(5) );
+			Card melbaCard2 = new Card(CardColor.TITANIUM, CardType.DEBIT, "2254 8963 4598 6654", 859,LocalDate.now(),LocalDate.now().plusYears(5) );
+			Card juanTopoCard = new Card(CardColor.SILVER, CardType.CREDIT, "2589 6932 5899 1145",895, LocalDate.now(),LocalDate.now().plusYears(5));
+
+			melba.addCard(melbaCard1);
+			melba.addCard(melbaCard2);
+			juanTopo.addCard (juanTopoCard);
+
 
 			melba.addClientLoan(melbaHipotecario);
 			hipotecario.addClientLoan (melbaHipotecario);
@@ -97,6 +106,10 @@ public class HomebankingApplication {
 			clientLoanRepository.save(juanPersonal);
 			clientLoanRepository.save(melbaHipotecario);
 			clientLoanRepository.save(melbaPersonal);
+
+			cardRepository.save(melbaCard1);
+			cardRepository.save(melbaCard2);
+			cardRepository.save(juanTopoCard);
 
 
 
