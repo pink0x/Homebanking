@@ -37,5 +37,14 @@ let app = createApp({
         })
         .catch((error) => console.log(error));
     },
+
+
+    formatDate(aux){
+      // Obtenengo el año y el mes de la fecha
+       aux = aux.slice(2,7).replace("-","/")
+
+      return aux.substring(3,5) + "/" + aux.substring(0,2)
+     
+    },
   },
 }).mount("#app");

@@ -43,7 +43,7 @@
         </nav>
       </header>
 
-      <main class="m-20 grow-1">
+      <main class="m-20 grow-1 text-azulOscuro">
 
         <h1
           class="text-3xl font-bold text-azulOscuro mb-8 md:text-5xl font-semibold"
@@ -56,12 +56,12 @@
                 <h2 class="text-xl font-semibold text-azulOscuro md:text-3xl mb-6">
                     Credit
                   </h2>
-                <div id="creditCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo shadow-sm" >
+                <div id="creditCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo" >
                     <p class="font-semibold text-2xl tracking-[0.3rem]"> {{card.number}}</p>
-                    <p class="font-semibold text-xl"> {{card.cardHolder}}</p>
-                    <div class="flex gap-4">
-                    <p class="leading-none gap-2"> <span class="text-[0.6rem] ">VALID <br>FROM</span> <b>{{card.fromDate}}</b></p>
-                    <p class="leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{card.thruDate}}</b></p>
+                    <p class="font-semibold text-xl drop-shadow-xl"> {{card.cardHolder.toUpperCase()}}</p>
+                    <div class="flex gap-16">
+                    <p class="leading-none gap-2"> <span class="text-[0.6rem] ">VALID <br>FROM</span> <b>{{formatDate(card.fromDate)}}</b></p>
+                    <p class="leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{formatDate(card.thruDate)}}</b></p>
     
                     </div>
                     
@@ -74,10 +74,10 @@
                   </h2>
                 <div id="debitCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo shadow-sm" >
                     <p class="font-semibold text-2xl tracking-[0.3rem]"> {{card.number}}</p>
-                    <p class="font-semibold text-xl"> {{card.cardHolder}}</p>
-                    <div class="flex gap-4">
-                    <p class="leading-none gap-2"> <span class="text-[0.6rem] ">VALID <br>FROM</span> <b>{{card.fromDate}}</b></p>
-                    <p class="leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{card.thruDate}}</b></p>
+                    <p class="font-semibold text-xl"> {{card.cardHolder.toUpperCase()}}</p>
+                    <div class="flex gap-16">
+                    <p class="leading-none gap-2"> <span class="text-[0.6rem] ">VALID <br>FROM</span> <b>{{formatDate(card.fromDate)}}</b></p>
+                    <p class="leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{formatDate(card.thruDate)}}</b></p>
     
                     </div>
                     

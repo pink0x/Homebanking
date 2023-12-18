@@ -61,7 +61,10 @@
             
             <div class="flex gap-4 justify-center items-center">
                 <p class="text-lg">Balance:</p>
-                <p  class="text-4xl font-bold">${{balance}}</p>
+                <p  class="text-4xl font-bold">{{Intl.NumberFormat('en-US',
+                  {style: 'currency',
+                  currency: 'USD'}).
+                  format(balance)}}</p>
                 <!-- {{formatMoney(balance) }}< -->
             </div>
         </section>
@@ -88,7 +91,10 @@
                                     <td v-else class="text-rose-600 font-semibold"> {{transaction.type}} </td>
                                     <td> {{transaction.date}} </td>
                                     <td> {{transaction.description}} </td>
-                                    <td> ${{transaction.amount}} </td>
+                                    <td> {{Intl.NumberFormat('en-US',
+                                      {style: 'currency',
+                                      currency: 'USD'}).
+                                      format(transaction.amount)}} </td>
     
                             </tr>
                             

@@ -65,7 +65,10 @@
             </div>
             <div>
               <p class="font-thin">Balance:</p>
-              <p class="font-semibold">${{account.balance}}</p>
+              <p class="font-semibold">{{Intl.NumberFormat('en-US',
+                {style: 'currency',
+                currency: 'USD'}).
+                format(account.balance)}}</p>
             </div>
             <div>
               <p class="font-thin">Creation Date:</p>
@@ -80,28 +83,35 @@
           </div>
         </div>
 
-        <section>
+        <section class="">
           <h2 class="text-2xl font-black text-azulOscuro mb-4 md:text-3xl font-semibold">
             Your loans:
           </h2>
-          <table class="table-auto w-[100%] gap-4">
-            <thead class="mb-8">
-              <tr class="text-left text-azulOscuro">
-                <th>Name:</th>
-                <th>Amount:</th>
-                <th>Payments</th>
-              </tr>
-            </thead>
-            <tbody>
-              <template v-for="loan of loans" class="flex flex-row gap-2 mt-4">
-                <tr>
-                  <td class="text-verdeClaro font-semibold">{{loan.name}}</td>
-                  <td>{{loan.amount}}</td>
-                  <td>{{loan.payments}}</td>
+          <div class="m-auto bg-gray-400/10 p-6">
+            <table class="table-auto w-[100%] gap-4 self-center">
+              <thead class="mb-8">
+                <tr class="text-left text-azulOscuro border-b-[1px] border-azulOscuro/20">
+                  <th>Name:</th>
+                  <th>Amount:</th>
+                  <th>Payments</th>
                 </tr>
-              </template>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <template v-for="loan of loans" class="flex flex-row gap-2 mt-4">
+                  <tr  class="border-b-[1px] border-azulOscuro/20">
+                    <td class="text-verdeClaro font-semibold">{{loan.name}}</td>
+                    <td>{{Intl.NumberFormat('en-US',
+                      {style: 'currency',
+                      currency: 'USD'}).
+                      format(loan.amount)}}</td>
+                    <td>{{loan.payments}}</td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+
+          </div>
+          
         </section>
       </main>
 
