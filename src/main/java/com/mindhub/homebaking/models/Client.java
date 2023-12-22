@@ -12,11 +12,9 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name, lastName, email;
+    private String name, lastName, email, password;
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Account> accounts = new ArrayList<>();
-
-
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
@@ -25,14 +23,17 @@ public class Client {
     private Set<Card> clientCards = new HashSet<>();
 
 
+    private RoleType role = RoleType.CLIENT;
 
 
 
 
-    public Client(String name, String lastName, String email) {
+    public Client(String name, String lastName, String email, String password, RoleType role) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
 
@@ -43,7 +44,6 @@ public class Client {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -51,7 +51,6 @@ public class Client {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -59,13 +58,20 @@ public class Client {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
     public Long getId() {
         return id;
+    }
+
+
+    public RoleType getRole() {
+        return role;
+    }
+    public void setRole(RoleType role) {
+        this.role = role;
     }
 
     public void addAccount (Account account){
@@ -95,6 +101,14 @@ public class Client {
 
     public void setClientCards(Set<Card> clientCards) {
         this.clientCards = clientCards;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void addClientLoan(ClientLoan clientLoan) {

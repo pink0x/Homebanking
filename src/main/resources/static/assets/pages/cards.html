@@ -72,12 +72,12 @@
                 <h2 class="text-xl font-semibold text-azulOscuro md:text-3xl mb-6">
                     Debit
                   </h2>
-                <div id="debitCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo shadow-sm" >
-                    <p class="font-semibold text-2xl tracking-[0.3rem]"> {{card.number}}</p>
-                    <p class="font-semibold text-xl"> {{card.cardHolder.toUpperCase()}}</p>
+                <div id="debitCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo " >
+                    <p class="cardText font-semibold text-2xl tracking-[0.3rem]"> {{card.number}}</p>
+                    <p class="cardText font-semibold text-xl"> {{card.cardHolder.toUpperCase()}}</p>
                     <div class="flex gap-16">
-                    <p class="leading-none gap-2"> <span class="text-[0.6rem] ">VALID <br>FROM</span> <b>{{formatDate(card.fromDate)}}</b></p>
-                    <p class="leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{formatDate(card.thruDate)}}</b></p>
+                    <p class="cardText leading-none gap-2"> <span class="text-[0.6rem] ">VALID <br>FROM</span> <b>{{formatDate(card.fromDate)}}</b></p>
+                    <p class="cardText leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{formatDate(card.thruDate)}}</b></p>
     
                     </div>
                     

@@ -46,3 +46,12 @@ background: linear-gradient(307deg, rgba(113,143,125,1) 0%, rgba(121,167,140,1) 
     background-size: 25rem auto; 
 
 }
+
+.cardText{
+    text-shadow: 10px 10px 2px -7px rgb(0, 0, 0);
+}
+
+#mainIndex{
+    background-image: url(../images/indexBackground.png);
+    background-color: red;
+}
