@@ -63,7 +63,7 @@ public class ClientController {
             return new ResponseEntity<>("Debe ingresar una contraseña",HttpStatus.FORBIDDEN);
         }
 
-        if (clientRepository.existByEmail(email) ){
+        if (clientRepository.existsByEmail(email) ){
             return new ResponseEntity<>("El email ya esta en uso", HttpStatus.FORBIDDEN);
         }
 

@@ -34,11 +34,8 @@ public class WebAuthetication extends GlobalAuthenticationConfigurerAdapter {
             }else {
                 throw new UsernameNotFoundException("Quien eres?");
             }
-
-
         });
     }
-
 
  @Bean
     public PasswordEncoder passwordEncoder (){
