@@ -47,11 +47,13 @@
         <h1
           class="text-3xl font-bold text-azulOscuro mb-8 md:text-5xl font-semibold"
         >
+        
           Welcome back, <span class="text-verdeClaro ">{{data.name}}.</span>
         </h1>
         <h2 class="text-xl font-semibold text-azulOscuro md:text-3xl">
           Please, select an account.
         </h2>
+        <button @click.prevent="logout">LOG OUT</button>
         <div
           class="flex flex-col gap-12 md:gap-18 my-12 md:my-18 items-center flex-wrap lg-flex-row"
         >

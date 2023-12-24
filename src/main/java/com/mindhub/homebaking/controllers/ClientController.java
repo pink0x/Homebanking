@@ -33,10 +33,10 @@ public class ClientController {
 
     }
 
-    @RequestMapping("/{id}")
-    public ClientDTO getOneClient (@PathVariable Long id){
-        return new ClientDTO(clientRepository.findById(id).orElse(null));
-    }
+//    @RequestMapping("/{id}")
+//    public ClientDTO getOneClient (@PathVariable Long id){
+//        return new ClientDTO(clientRepository.findById(id).orElse(null));
+//    }
 
     @RequestMapping("/current")
     public ResponseEntity<ClientDTO> getOneClient(Authentication authentication) {
@@ -44,8 +44,8 @@ public class ClientController {
         return new ResponseEntity<>(new ClientDTO(client), HttpStatus.OK);
     }
 
-    @PostMapping("")
-    public ResponseEntity<String> createClient ( @RequestParam String firstName,
+    @PostMapping
+    public ResponseEntity<Object> createClient ( @RequestParam String firstName,
                                                  @RequestParam String lastName,
                                                  @RequestParam String email,
                                                  @RequestParam String password){

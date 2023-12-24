@@ -19,8 +19,18 @@ let app = createApp({
   },
 
   methods: {
+
+    logout(){
+
+      axios.post("/api/logout")
+        .then(response => {
+          console.log(response)
+          window.location.href="../../index.html"
+        })
+        .catch(error => console.log("Error", error))
+    },
     loadData() {
-      axios("/api/clients/1")
+      axios("/api/clients/current")
         .then((response) => {
           this.data = response.data;
           console.log(this.name);

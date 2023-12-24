@@ -23,8 +23,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth ->
 
-                auth.requestMatchers("/index.html","/assets/**","/assets/tailwind.config.js").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
+                auth.requestMatchers("/index.html","/assets/**","/assets/tailwind.config.js","/api/accounts").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/clients","/api/login").permitAll()
 
                         .requestMatchers(HttpMethod.GET, "/api/clients/current").hasAnyAuthority("CLIENT")
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")

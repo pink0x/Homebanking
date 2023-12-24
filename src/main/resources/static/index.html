@@ -16,37 +16,37 @@
 
             <form action="" class="bg-azulOscuro flex flex-col px-10  w-[25rem] h-[30rem] text-beige items-center m-auto" v-if ="registered" @submit.prevent>
              <label for="">Name</label >
-                <input type="text" v-model="name">
+                <input type="text" v-model="name" class="text-azulOscuro">
 
                 <label for="">Last Name</label>
-                <input type="text" v-model="lastName">
+                <input type="text" v-model="lastName" class="text-azulOscuro">
 
                 <label for="">Email</label>
-                <input type="text" v-model="email">
+                <input type="text" v-model="email" class="text-azulOscuro">
 
                 <label for=""> Password</label>
-                <input type="password" name="" id="" v-model="password">
+                <input type="password" name="" id="" v-model="password" class="text-azulOscuro">
 
                
 
-                <button class="bg-verdeClaro p-2 text-azulOscuro" @click="register()"> SIGN UP
+                <button class="bg-verdeClaro p-2 text-azulOscuro" @click.prevent="register()"> SIGN UP
                 </button>
 
                 
-                <button type="submit" @click="registrado " @submit.prevent>"Already have an account?</button >
+                <button type="submit" @click="registrado " @submit.prevent>Already have an account?</button >
              
 
             </form>
 
             <form action="" class="bg-azulOscuro flex flex-col px-10  w-[25rem] h-[30rem] text-beige items-center m-auto" v-else>
                 <label for="">Email</label>
-                <input type="text" v-model="email">
+                <input type="text" v-model="email" class="text-azulOscuro">
 
                 <label for=""> Password</label>
-                <input type="password" name="" id="" v-model="password">
+                <input type="password" name="" id="" v-model="password" class="text-azulOscuro">
 
                 
-                <button class="bg-verdeClaro p-2 text-azulOscuro" @click="registrado"> SIGN IN
+                <button class="bg-verdeClaro p-2 text-azulOscuro" @click.prevent="login()"> SIGN IN
                 </button>
 
                 
