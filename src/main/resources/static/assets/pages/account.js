@@ -8,6 +8,7 @@ let app = createApp({
       balance: "",
       date: "",
       transactions: [],
+      
     //   transaction:{},
       type:"",
     };
@@ -18,9 +19,10 @@ let app = createApp({
     const paramsId = new URLSearchParams(searchId);
     const ID = paramsId.get("id");
 
-    axios("/api/accounts/" + ID)
+    axios("/api/clients/current")
       .then((response) => {
-        this.data = response.data;
+        this.data = response.data.accounts.find(account => account.id == ID);
+        
         this.name = this.data.number;
         this.date = this.data.date;
         this.balance = this.data.balance;
