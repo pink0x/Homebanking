@@ -12,6 +12,10 @@ let app = createApp({
       loans: [],
       cards: [],
       card: "",
+      cardModal:false,
+      colorSelected: "",
+      typeSelected: "",
+
     };
   },
 
@@ -22,7 +26,7 @@ let app = createApp({
 
   methods: {
     loadData() {
-      axios("/api/clients/1")
+      axios.get("/api/clients/current")
         .then((response) => {
           this.data = response.data;
           console.log(this.name);
@@ -46,5 +50,22 @@ let app = createApp({
       return aux.substring(3,5) + "/" + aux.substring(0,2)
      
     },
+
+
+    openCardModal(){
+      this.cardModal= true;
+    },
+
+    createCard(){
+      axios.post("/api/clients/current/cards?cardColor="+this.colorSelected+"&cardType="+this.typeSelected)
+      .then(response =>{
+        this.cardModal = false
+        console.log(response)
+        
+      })
+      .catch(error => console.log(error))
+      
+    }
+
   },
 }).mount("#app");

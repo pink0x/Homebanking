@@ -45,17 +45,17 @@
 
      <main class="flex flex-col justify-center gap-16 py-16 mx-14 grow-1">
 
-        <h1 class="text-5xl font-semibold text-azulOscuro mb-8">  Your account, <span class="text-verdeClaro">{{name}}.</span> </h1>
+        <h1 class="text-5xl font-semibold text-azulOscuro mb-8">  Your account, <span class="text-verdeClaro">{{data.name}}.</span> </h1>
 
         <section class="card text-beigeFondo flex w-1/2 flex-col gap-4 p-8 rounded-lg m-auto">
-            <div class="flex justify-around">
+            <div class="flex justify-around" >
                 <div class="flex gap-4">
                     <p class="text-lg">Account number:</p>
-                    <p class="text-xl text-verdeClaro font-bold">{{name}}</p>
+                    <p class="text-xl text-verdeClaro font-bold">{{account.name}}</p>
                 </div >
                 <div class="flex gap-4">
                     <p class="text-lg">Creation date:</p>
-                    <p  class="text-xl font-bold">{{date}}</p>
+                    <p  class="text-xl font-bold">{{account.date}}</p>
                 </div>
             </div>
             
@@ -64,7 +64,7 @@
                 <p  class="text-4xl font-bold">{{Intl.NumberFormat('en-US',
                   {style: 'currency',
                   currency: 'USD'}).
-                  format(balance)}}</p>
+                  format(account.balance)}}</p>
                 <!-- {{formatMoney(balance) }}< -->
             </div>
         </section>

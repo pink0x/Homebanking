@@ -4,11 +4,11 @@ let app = createApp({
   data() {
     return {
       data: [],
-      name: "",
-      balance: "",
-      date: "",
+      
+  
       transactions: [],
-    //   transaction:{},
+      account:[],
+    
       type:"",
     };
   },
@@ -18,13 +18,15 @@ let app = createApp({
     const paramsId = new URLSearchParams(searchId);
     const ID = paramsId.get("id");
 
-    axios("/api/accounts/" + ID)
+    axios("/api/clients/current" )
       .then((response) => {
-        this.data = response.data;
-        this.name = this.data.number;
-        this.date = this.data.date;
-        this.balance = this.data.balance;
-        this.transactions = this.data.transactions
+        console.log(response)
+        this.data = response.data; 
+        this.account = response.data.accounts.find(account => account.id == ID)       
+        this.transactions = this.account.transactions
+      
+        
+        console.log(this.accounts)
         
         this.type= this.transactions.type
         console.log(this.data)

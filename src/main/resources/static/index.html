@@ -9,48 +9,77 @@
   </head>
   <body class="flex flex-col">
     <div id="app">
-        <main id="mainIndex" class="">
+        <main id="mainIndex" class="grow">
+          
+          <img src="assets/images/SBblue.png" alt="" class=" flex object-contain w-[40rem] absolute top-10 left-10">
+
+          <h2 class="absolute top-48 left-20 text-5xl font-semibold text-azulOscuro"> <b> You can trust us.</b> <br> Or maybe not, but who cares?</h2>
+
+          
 
 
             
 
-            <form action="" class="bg-azulOscuro flex flex-col px-10  w-[25rem] h-[30rem] text-beige items-center m-auto" v-if ="registered" @submit.prevent>
-             <label for="">Name</label >
-                <input type="text" v-model="name" class="text-azulOscuro">
+            <form action="" class="formulario bg-azulOscuro/90 flex flex-col px-4  w-[25rem] h-[30rem] text-beige items-center m-auto gap-4" v-if ="registered" @submit.prevent>
+              <div class="formNav"> 
+                <a href="" @click="registrado " @submit.prevent class="w-1/3">LOG IN</a>
+                <a href="" class="border-b-[0.2rem] border-verdeClaro w-1/3 ">SIGN UP</a>
+              </div>
 
-                <label for="">Last Name</label>
-                <input type="text" v-model="lastName" class="text-azulOscuro">
+             <div class="flex flex-col  gap-1">
+              <label for="" class="ml-4 text-left text-xs">NAME</label >
+              <input type="text" v-model="name" class="text-azulOscuro/90 font-semibold text-center w-[20rem]">
+            </div>
 
-                <label for="">Email</label>
-                <input type="text" v-model="email" class="text-azulOscuro">
+                <div class="flex flex-col  gap-1">
+                  <label for="" class="ml-4 text-left text-xs">LAST NAME</label>
+                <input type="text" v-model="lastName" class="text-azulOscuro/90 font-semibold text-center w-[20rem]">
+                </div>
 
-                <label for=""> Password</label>
-                <input type="password" name="" id="" v-model="password" class="text-azulOscuro">
+                <div class="flex flex-col  gap-1">
+                  <label for="" class="ml-4 text-left text-xs">EMAIL</label>
+                <input type="text" v-model="email" class="text-azulOscuro/90 font-semibold text-center w-[20rem]">
+                </div>
+
+                <div class="flex flex-col  gap-1">
+                  <label for="" class="ml-4 text-left text-xs"> PASSWORD</label>
+                <input type="password" name="" id="" v-model="password" class="text-azulOscuro/90 font-semibold text-center w-[20rem]">
+                </div>
 
                
 
-                <button class="bg-verdeClaro p-2 text-azulOscuro" @click.prevent="register()"> SIGN UP
+                <button class="bg-verdeClaro p-2 text-azulOscuro  w-[20rem] rounded-3xl mt-2 font-semibold" @click.prevent="register()"> SIGN UP
                 </button>
 
                 
-                <button type="submit" @click="registrado " @submit.prevent>Already have an account?</button >
+                <!-- <button type="submit" @click="registrado " @submit.prevent>Already have an account?</button > -->
              
 
             </form>
 
-            <form action="" class="bg-azulOscuro flex flex-col px-10  w-[25rem] h-[30rem] text-beige items-center m-auto" v-else>
-                <label for="">Email</label>
-                <input type="text" v-model="email" class="text-azulOscuro">
+            <form action="" class="formulario bg-azulOscuro/90 flex flex-col px-4  w-[25rem] h-[30rem] text-beige items-center m-auto gap-4" v-else>
+              <div class="formNav"> 
+                <a href="" class="border-b-[0.2rem] border-verdeClaro w-1/3">LOG IN</a>
+                <a href=""  @click.prevent="registrado" class="w-1/3">SIGN UP</a>
+              </div>
+                <div class="flex flex-col text-center gap-1">
+                  <label for="" class="ml-4 text-left text-xs"> EMAIL </label>
+                <input type="text" v-model="email"  class="text-azulOscuro/90 font-semibold text-center w-[20rem]">
+                </div>
 
-                <label for=""> Password</label>
-                <input type="password" name="" id="" v-model="password" class="text-azulOscuro">
+                <div class="flex flex-col text-center gap-1 mt-4">
+                  <label for="" class="ml-4 text-left text-xs"> PASSWORD</label>
+                <input type="password" name="" id="" v-model="password" class="text-azulOscuro text-center w-[20rem]">
+                </div>
+
+                <a href="" class="text-xs text-white/80 font-semibold"> ¿Forgot your Password?</a>
 
                 
-                <button class="bg-verdeClaro p-2 text-azulOscuro" @click.prevent="login()"> SIGN IN
+                <button class="bg-verdeClaro p-2 text-azulOscuro  w-[20rem] rounded-3xl mt-4 font-semibold" @click.prevent="login()"> LOG IN
                 </button>
 
                 
-                <button type="submit" @click.prevent="registrado">"Don't have an account?</button >
+                <!-- <button type="submit" @click.prevent="registrado">"Don't have an account?</button > -->
 
 
             </form>

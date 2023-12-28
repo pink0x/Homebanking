@@ -8,7 +8,7 @@ let app = createApp({
       lastName: "",
       registered: false,
       email: "",
-      password: ","
+      password: "",
       
     };
   },

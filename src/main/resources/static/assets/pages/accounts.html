@@ -15,6 +15,16 @@
         >
           <img src="../images/SB.png" alt="" class="flex h-16" />
           <img src="../images/StandBank.png" alt="" class="flex h-8" />
+
+
+          <div class="text-beige flex items-center gap-2 absolute right-4">
+          
+            <img src="../images/userIcon.png" alt="" class="h-4 w-auto contain">
+            <p>{{data.name}} {{data.lastName}}  || </p>
+          
+          <button class="text-sm" @click.prevent="logout">LOG OUT</button>
+          <img src="../images/logOutIcon.png" alt="" class="h-4 w-auto contain">
+        </div>
         </div>
 
         <nav
@@ -41,6 +51,8 @@
             >Transactions</a
           >
         </nav>
+
+        
       </header>
 
       <main class="m-20 grow-1">
@@ -53,7 +65,7 @@
         <h2 class="text-xl font-semibold text-azulOscuro md:text-3xl">
           Please, select an account.
         </h2>
-        <button @click.prevent="logout">LOG OUT</button>
+        
         <div
           class="flex flex-col gap-12 md:gap-18 my-12 md:my-18 items-center flex-wrap lg-flex-row"
         >

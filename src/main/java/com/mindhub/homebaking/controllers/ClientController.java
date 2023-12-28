@@ -2,8 +2,8 @@ package com.mindhub.homebaking.controllers;
 
 
 import com.mindhub.homebaking.dto.ClientDTO;
-import com.mindhub.homebaking.models.Client;
-import com.mindhub.homebaking.models.RoleType;
+import com.mindhub.homebaking.models.*;
+import com.mindhub.homebaking.repositories.AccountRepository;
 import com.mindhub.homebaking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,9 @@ public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
     @Autowired
     public PasswordEncoder passwordEncoder;
 
@@ -30,7 +34,11 @@ public class ClientController {
                 .stream()
                 .map(client -> new ClientDTO(client))
                 .collect(Collectors.toList());
-
+    }
+    @RequestMapping("/current")
+    public ResponseEntity<ClientDTO> getOneClient(Authentication authentication) {
+        Client client = clientRepository.findByEmail(authentication.getName());
+        return new ResponseEntity<>(new ClientDTO(client), HttpStatus.OK);
     }
 
 //    @RequestMapping("/{id}")
@@ -38,11 +46,7 @@ public class ClientController {
 //        return new ClientDTO(clientRepository.findById(id).orElse(null));
 //    }
 
-    @RequestMapping("/current")
-    public ResponseEntity<ClientDTO> getOneClient(Authentication authentication) {
-        Client client = clientRepository.findByEmail(authentication.getName());
-        return new ResponseEntity<>(new ClientDTO(client), HttpStatus.OK);
-    }
+
 
     @PostMapping
     public ResponseEntity<Object> createClient ( @RequestParam String firstName,
@@ -73,8 +77,24 @@ public class ClientController {
 
      clientRepository.save(client);
 
+
+        String number;
+
+        do {
+            number = "VIN" + getRandomNumber(10000000, 99999999);
+
+        }while(accountRepository.existsByNumber(number));
+
+        Account account = new Account(number,0, LocalDate.now());
+        client.addAccount(account);
+        accountRepository.save(account);
+
      return new ResponseEntity<>("Registrado con exito", HttpStatus.CREATED);
 
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
 
