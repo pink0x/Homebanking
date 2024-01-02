@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../images/SB.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Transaction</title>
+  </head>
+  <body class="flex flex-col">
+    <div id="app">
+      {{showBalance}}
+      <header class="flex flex-col items-center gap-2 mb-10">
+        <div
+          class="flex flex-col items-center gap-2 bg-azulOscuro w-full justify-center md:flex-row gap-6 py-4"
+        >
+          <img src="../images/SB.png" alt="" class="flex h-16" />
+          <img src="../images/StandBank.png" alt="" class="flex h-8" />
+
+          <div class="text-beige flex items-center gap-2 absolute right-4">
+            <img
+              src="../images/userIcon.png"
+              alt=""
+              class="h-4 w-auto contain"
+            />
+            <p>{{data.name}} {{data.lastName}} ||</p>
+
+            <button class="text-sm" @click.prevent="logout">LOG OUT</button>
+            <img
+              src="../images/logOutIcon.png"
+              alt=""
+              class="h-4 w-auto contain"
+            />
+          </div>
+        </div>
+
+        <nav
+          class="flex flex-col font-semibold text-lg md:flex-row md:justify-around md:w-full md:text-2xl md:items-bottom md:h-10"
+        >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Accounts</a
+          >
+          <a
+            href="cards.html"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Cards</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Loans</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+            >Transactions</a
+          >
+        </nav>
+      </header>
+
+      <main class="mb-40">
+        <h1
+          class="text-3xl font-bold text-azulOscuro mb-16 ml-10 md:text-5xl font-semibold"
+        >
+          New Transaction
+        </h1>
+
+        <section class="flex justify-center items-center">
+          <form
+            action=""
+            class="card flex flex-col w-2/3  p-6 gap-6 rounded-xl"
+          >
+            <fieldset
+              class="flex border border-beige p-6 rounded-md justify-around items-center"
+            >
+              <legend>
+                <p class="mx-6 text-verdeClaro font-semibold text-2xl">
+                  Accounts
+                </p>
+              </legend>
+              <label for="from" class="text-semibold  text-beige"> From: </label>
+
+              <select name="from" id="from"  class=" text-black bg-beigeFondo/10 rounded-lg h-6 w-72  text-lg py-4  font-semibold  py-2 " v-model="accountNumberOrigin">
+                <option
+                  value=""
+                  disabled
+                  selected
+                  class=" text-azulOscuro"
+                >
+                  Select an account
+                </option>
+
+                <option
+                  v-for="account of accounts"
+                  v-bind:value="account.number"
+                  class=" text-azulOscuro"
+                >
+                  {{account.number}}
+                </option>
+              </select>
+
+              <!-- 
+                   -->
+
+              <!-- <input type="text" placeholder="  Origin Account Number" class="bg-beigeFondo/10 rounded-lg h-8 w-72 text-beigeFondo text-lg py-4 placeholder:text-beige/50 placeholder:text-sm font-semibold ml-4 py-2"> -->
+
+              <label for="" class="text-semibold text-beige">
+                To:
+                <input
+                  type="text"
+                  placeholder="  Destination Account Number"
+                  class="bg-beigeFondo/10 rounded-lg h-8 w-72 text-beigeFondo text-lg placeholder:text-beige/50 placeholder:text-sm font-semibold ml-4 py-2" v-model="accountNumberDestiny"
+                />
+              </label>
+            </fieldset>
+            <fieldset
+              class="flex border border-beige p-6 pl-10 rounded-md justify-around items-center gap-4"
+            >
+              <legend>
+                <p class="mx-6 text-verdeClaro font-semibold text-2xl">
+                  Amount
+                </p>
+              </legend>
+              <div class="w-1/2 ml-4">
+                <label for="" class="text-semibold text-beige">
+                  Amount: &ensp;
+                  <span
+                    class="text-verdeClaro bg-azulOscuro/60 px-[0.4rem] py-[0.3rem] rounded-md font-bold text-xl"
+                    >$</span
+                  >
+                  <input
+                    type="number"
+                    placeholder="  Enter amount"
+                    class="bg-beigeFondo/10 rounded-tr-lg w-[17rem] rounded-br-lg h-8 text-beigeFondo text-lg py-4 placeholder:text-beige/50 placeholder:text-sm font-semibold placeholder:ml-2 py-2" v-model="amount"
+                  />
+                </label>
+              </div>
+
+              <div  class="flex gap-10 w-1/2 flex items-center relative text-beige">
+                <h1>Available:</h1>
+                <div class="flex gap-10 items-center">
+                  <div class="flex rounded-md items-center pr-4 relative">
+                    <span
+                      class="flex text-verdeClaro px-[0.4rem] py-[0.3rem] rounded-md font-bold text-xl aboslute left-2"
+                      >$
+                    </span>
+                    <h1 class="font-bold text-xl text-white/50 p-2" v-if="!showModal ">****</h1>
+                    <h1 class="font-bold text-xl text-white/50 p-2" v-if="showModal" > {{balance}} </h1>
+                  </div>                 
+
+                  <img v-if="!showModal "
+                    src="../images/hidden.png"
+                    alt=""
+                    class="self-center flex w-6 object-contain absolute right-0" 
+                    @click.prevent="modalVisible()"
+                  />
+
+                  <img v-if="showModal "
+                    src="../images/show.png"
+                    alt=""
+                    class="self-center flex w-6 object-contain absolute right-0" 
+                    @click.prevent="modalHiden()"
+                  />
+
+
+                </div>
+                <!-- <div  v-if="showModal" v-for="account of accounts" class="flex gap-10 items-center">
+                  <div class="flex rounded-md items-center pr-4 relative">
+                    <span
+                      class="flex text-verdeClaro px-[0.4rem] py-[0.3rem] rounded-md font-bold text-xl aboslute left-2"
+                      >$
+                    </span>
+                    <h1 class="font-bold text-xl text-white/50 p-2"> {{account.balance}} </h1>
+                  </div>
+
+                    
+                  </div>
+              </div> -->
+            </fieldset>
+            <fieldset
+              class="flex border border-beige p-6 rounded-md justify-around items-center gap-4"
+            >
+              <legend>
+                <p class="mx-6 text-verdeClaro font-semibold text-2xl">
+                  Description
+                </p>
+              </legend>
+              <textarea
+                name=""
+                id=""
+                class="w-[100%] h-26 rounded-md p-4 bg-beigeFondo/10 text-beigeFondo"
+                placeholder="Add a description" v-model="description"
+              ></textarea>
+            </fieldset>
+
+            <button
+              class="bg-verdeClaro p-2 text-azulOscuro w-[20rem] rounded-3xl font-semibold m-auto" @click.prevent="transaction()"
+            >
+              SEND
+            </button>
+          </form>
+        </section>
+      </main>
+
+      <footer class="bg-azulOscuro h-24 flex grow-0"></footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <script src="transactions.js"></script>
+  </body>
+</html>

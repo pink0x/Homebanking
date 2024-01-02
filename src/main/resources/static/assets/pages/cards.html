@@ -91,36 +91,15 @@
 
        
 
-        <button class="bg-verdeClaro p-2 text-azulOscuro  w-[20rem] rounded-3xl mt-4 font-semibold" @click.prevent="openCardModal()">NEW CARD</button>
-
+        <a href="createCard.html" class=" flex justify-center bg-verdeClaro p-2 text-azulOscuro  w-[20rem] rounded-3xl  font-semibold m-auto" >NEW CARD</a>
+        
         
      
 
       </main>
 
 
-      <div v-if="cardModal">
-        <form action="">
-          <label for="">CARD COLOR</label>
-          
-          <select name="" id="" v-model="colorSelected">
-            <option value="GOLD">GOLD</option>
-            <option value="BLACK">BLACK</option>
-            <option value="TITANIUM">TITANIUM</option>
-          </select>
-
-          <label for="">CARD TYPE</label>
-          <select name="" id="" v-model="typeSelected">
-            <option value="CREDIT">CREDIT</option>
-            <option value="DEBIT">DEBIT</option>
-            
-          </select>
-
-        </form>
-
-        <button @click.prevent="createCard()">CREATE</button>
-
-      </div>
+     
 
       <footer class="bg-azulOscuro h-24 flex grow-0"></footer>
     </div>

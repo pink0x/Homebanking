@@ -23,11 +23,11 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth ->
 
-                auth.requestMatchers("/index.html","/assets/**","/assets/tailwind.config.js","/api/accounts","/assets/pages/cards.html", "/assets/pages/account.html").permitAll()
+                auth.requestMatchers("/assets/pages/transactions.html","/assets/pages/transactions.js","/index.html","/assets/**","/assets/tailwind.config.js","/api/accounts","/assets/pages/cards.html", "/assets/pages/account.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/clients","/api/login","/api/clients/current/cards").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/clients/current","/assets/pages/cards.html", "/assets/pages/account.html").hasAnyAuthority("CLIENT")
+                        .requestMatchers(HttpMethod.GET, "/api/clients/current/transactions","/assets/pages/transactions.html","/assets/pages/transactions.js","/api/clients/current","/assets/pages/cards.html", "/assets/pages/account.html").hasAnyAuthority("CLIENT")
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/account","/api/clients/current/cards").hasAnyAuthority("CLIENT")
+                        .requestMatchers(HttpMethod.POST,  "/api/transactions","/api/account","/api/clients/current/cards").hasAnyAuthority("CLIENT")
                         .anyRequest().denyAll());
 
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
