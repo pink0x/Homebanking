@@ -82,12 +82,12 @@
               </legend>
               <label for="from" class="text-semibold  text-beige"> From: </label>
 
-              <select name="from" id="from"  class=" text-black bg-beigeFondo/10 rounded-lg h-6 w-72  text-lg py-4  font-semibold  py-2 " v-model="accountNumberOrigin">
+              <select name="from" id="from"  class=" text-beige/50 text-sm bg-beigeFondo/10 rounded-lg h-8 w-72  text-lg   font-semibold  " v-model="accountNumberOrigin">
                 <option
                   value=""
                   disabled
                   selected
-                  class=" text-azulOscuro"
+                  class="bg-beigeFondo/10 text-azulOscuro"
                 >
                   Select an account
                 </option>
@@ -95,23 +95,18 @@
                 <option
                   v-for="account of accounts"
                   v-bind:value="account.number"
-                  class=" text-azulOscuro"
+                  class=" bg-beigeFondo/10 text-azulOscuro"
                 >
                   {{account.number}}
                 </option>
               </select>
-
-              <!-- 
-                   -->
-
-              <!-- <input type="text" placeholder="  Origin Account Number" class="bg-beigeFondo/10 rounded-lg h-8 w-72 text-beigeFondo text-lg py-4 placeholder:text-beige/50 placeholder:text-sm font-semibold ml-4 py-2"> -->
 
               <label for="" class="text-semibold text-beige">
                 To:
                 <input
                   type="text"
                   placeholder="  Destination Account Number"
-                  class="bg-beigeFondo/10 rounded-lg h-8 w-72 text-beigeFondo text-lg placeholder:text-beige/50 placeholder:text-sm font-semibold ml-4 py-2" v-model="accountNumberDestiny"
+                  class="bg-beigeFondo/10 rounded-lg h-8 w-72 text-beigeFondo/50 text-md placeholder:text-beige/50 placeholder:text-sm font-semibold ml-4 py-2" v-model="accountNumberDestiny"
                 />
               </label>
             </fieldset>
@@ -196,7 +191,7 @@
             </fieldset>
 
             <button
-              class="bg-verdeClaro p-2 text-azulOscuro w-[20rem] rounded-3xl font-semibold m-auto" @click.prevent="transaction()"
+              class="bg-verdeClaro p-2 text-azulOscuro w-[20rem] rounded-3xl font-semibold m-auto" @click.prevent="showSweetAlert()"
             >
               SEND
             </button>
@@ -209,6 +204,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script src="tailwind.config.js"></script>
     <script src="transactions.js"></script>
   </body>

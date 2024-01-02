@@ -1,3 +1,5 @@
+// import Swal from 'sweetalert2'
+
 const { createApp } = Vue;
 
 let app = createApp({
@@ -25,6 +27,8 @@ let app = createApp({
   },
 
   methods: {
+
+
 
     logout() {
 
@@ -64,6 +68,33 @@ let app = createApp({
     modalHiden(){
       this.showModal= false
     },
+
+    //-----------------------SWEET ALERT
+    
+    showSweetAlert() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#79A88C",
+        cancelButtonColor: "#181d31",
+        confirmButtonText: "Yes, send!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.transaction()
+          Swal.fire({
+            
+            title: "Transaction sent!",
+            text: "Your transaction has been sent.",
+            icon: "success"
+           
+          });
+        }
+      })
+      
+    }
+   
 
   },
 
