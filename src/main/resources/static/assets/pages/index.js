@@ -9,6 +9,8 @@ let app = createApp({
       registered: false,
       email: "",
       password: "",
+      error: "",
+      blankInputError: "",
       
     };
   },
@@ -29,6 +31,7 @@ let app = createApp({
           
         })
         .catch(error => {
+          this.error = "Incorrect username or password"
         console.log("Error", error)       
 
         })
@@ -40,7 +43,9 @@ let app = createApp({
           console.log(response)
           this.login()
         })
-        .catch(error => console.log("Error", error))
+        .catch(response => 
+          this.blankInputError = response.response.data,
+          console.log("Error"))
     },
 
     registrado(){

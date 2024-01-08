@@ -32,7 +32,7 @@ public class WebAuthetication extends GlobalAuthenticationConfigurerAdapter {
                                 AuthorityUtils.createAuthorityList(client.getRole().toString()));
 
             }else {
-                throw new UsernameNotFoundException("Quien eres?");
+                throw new UsernameNotFoundException("Wrong Password or Username");
             }
         });
     }

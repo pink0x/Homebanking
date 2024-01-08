@@ -21,7 +21,7 @@ main{
 
 .card{
     background: rgb(24,29,49);
-background: linear-gradient(307deg, rgba(24,29,49,1) 0%, rgba(51,61,99,1) 77%, rgba(24,29,49,1) 100%);
+    background: linear-gradient(307deg, rgba(24,29,49,1) 0%, rgba(51,61,99,1) 77%, rgba(24,29,49,1) 100%);
 
 }
 
@@ -55,27 +55,140 @@ background: linear-gradient(307deg, rgba(113,143,125,1) 0%, rgba(121,167,140,1) 
     height: 100vh;
     position:relative;
     display: flex;
+    flex-direction: column;
+    
     
     background-image: url(../images/indexBackground.png);
-    background-size: 100vw 100%;
+    background-size:cover;
     background-repeat: no-repeat;
     background-position: right;
-    object-fit: contain;
+    
 } 
 
 .formulario{
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    height: 30rem;
+    color:#E6DDC4;
+    align-items: center;
+    gap:1rem;
+    background-color: #181d31e2;
     top:6rem;
     right: 10rem;
     border-radius: 0.5rem;
     justify-content: center;
     
 }
+#title{
+    font-size: 2.5rem;
+    position: absolute;
+    top: 12rem;
+    text-align: center;
+
+}
+
+@media only screen and (max-width:425px) {
+    .formulario{
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        padding-top: 2rem;
+        
+        display: flex;
+        flex-direction: column;
+        width: 17rem;
+        height: 25rem;
+        color:#E6DDC4;
+        align-items: center;
+        gap:1rem;
+        background-color: #181d31e2;
+        
+        border-radius: 0.5rem;
+        justify-content: center;
+        
+    }
+    .formulario input{
+        
+        height:1rem;
+    }
+    #logo{
+        width: 20rem;
+        position: static;
+        display: flex;
+        margin:2rem auto 0 auto;
+       
+        
+        
+    }
+
+    #title{
+        position: static;
+        font-size: 1.5rem;
+        
+    }
+    .formNav{
+        margin-bottom: 1rem;
+    }
+    
+}
+
+
+
+@media only screen and (max-width: 1250px) and (min-width: 425px) {
+    #logo{
+        width: 30rem;
+        position: static;
+        display: flex;
+        margin:2rem auto 0 auto;
+       
+        
+        
+    }
+
+    #title{
+        position: static;
+        font-size: 2rem;
+        line-height: normal;
+        
+    }
+    .formulario{
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        padding-top: 2rem;
+        
+        display: flex;
+        flex-direction: column;
+        width: 25rem;
+        height: 27rem;
+        color:#E6DDC4;
+        align-items: center;
+        gap:1rem;
+        background-color: #181d31e2;
+        
+        border-radius: 0.5rem;
+        justify-content: center;
+        
+    }
+}
+    
+
+
 
 .formulario input{
     background-color: rgba(255, 255, 255, 0.29);
     height: 2rem;
+    width: 90%;
     border-radius: 1rem;
+    margin:auto;
+}
+
+.formulario label {
+    margin-left: 2rem;
 }
 
 .formNav{

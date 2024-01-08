@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/clients")
+@RequestMapping("/api")
 public class ClientController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class ClientController {
                 .map(client -> new ClientDTO(client))
                 .collect(Collectors.toList());
     }
-    @RequestMapping("/current")
+    @RequestMapping("/clients/current")
     public ResponseEntity<ClientDTO> getOneClient(Authentication authentication) {
         Client client = clientRepository.findByEmail(authentication.getName());
         return new ResponseEntity<>(new ClientDTO(client), HttpStatus.OK);
@@ -48,27 +48,27 @@ public class ClientController {
 
 
 
-    @PostMapping
+    @PostMapping("/clients")
     public ResponseEntity<Object> createClient ( @RequestParam String firstName,
                                                  @RequestParam String lastName,
                                                  @RequestParam String email,
                                                  @RequestParam String password){
 
         if(firstName.isBlank()){
-            return new ResponseEntity<>("Debe ingresar un nombre",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please, enter a First Name",HttpStatus.FORBIDDEN);
         }
         if(lastName.isBlank()){
-            return new ResponseEntity<>("Debe ingresar un apellido",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please, enter a Last Name",HttpStatus.FORBIDDEN);
         }
         if(email.isBlank()){
-            return new ResponseEntity<>("Debe ingresar un email",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please, enter an email",HttpStatus.FORBIDDEN);
         }
         if(password.isBlank()){
-            return new ResponseEntity<>("Debe ingresar una contraseña",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Please, enter a Password",HttpStatus.FORBIDDEN);
         }
 
         if (clientRepository.existsByEmail(email) ){
-            return new ResponseEntity<>("El email ya esta en uso", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("The email already exists", HttpStatus.FORBIDDEN);
         }
 
 

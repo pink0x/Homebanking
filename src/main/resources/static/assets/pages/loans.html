@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../images/SB.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Cards</title>
+  </head>
+  <body class="flex flex-col">
+    <div id="app">
+      <header class="flex flex-col items-center gap-2 mb-10">
+        <div
+          class="flex flex-col items-center gap-2 bg-azulOscuro w-full justify-center md:flex-row gap-6 py-4"
+        >
+          <img src="../images/SB.png" alt="" class="flex h-16" />
+          <img src="../images/StandBank.png" alt="" class="flex h-8" />
+        </div>
+
+        <nav
+          class="flex flex-col font-semibold text-lg md:flex-row md:justify-around md:w-full md:text-2xl md:items-bottom md:h-10"
+        >
+          <a
+            href="accounts.html"
+            class="  md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Accounts</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+            >Cards</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Loans</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Transactions</a
+          >
+        </nav>
+      </header>
+
+      <main class="m-20 grow-1 text-azulOscuro">
+
+       <div v-for="loan of loans">
+        <div class="flex">
+            <p>{{loan.name}} </p>
+            <p> {{loan.payments}} </p>
+            <p> {{loan.amount}} </p>
+
+
+        </div>
+        
+       </div>
+
+       <form action="" class="card flex flex-col" >
+
+        <label for="" class="text-semibold text-beige">Select a Laon</label>
+        <select name="from" id="from"  class=" text-beige/50 text-sm bg-beigeFondo/10 rounded-lg h-8 w-72  text-lg   font-semibold  " v-model="loanSelected" @change="blbl()">
+          <option
+            value=""
+            disabled
+            selected
+            class="bg-beigeFondo/10 text-azulOscuro"
+          >
+            Select a Loan
+          </option>
+
+          <option
+            v-for="loan of loans"
+            v-bind:value="loan"
+            class=" bg-beigeFondo/10 text-azulOscuro"
+            
+          >
+            {{loan.name}}
+          </option>
+        </select>
+        
+        <label for="" class="text-semibold text-beige">
+            To:
+           
+          </label>
+
+          <select name="from" id="from"  class=" text-beige/50 text-sm bg-beigeFondo/10 rounded-lg h-8 w-72  text-lg   font-semibold  " v-model="accountSelected">
+            <option
+              value=""
+              disabled
+              selected
+              class="bg-beigeFondo/10 text-azulOscuro"
+            >
+              Select an account
+            </option>
+
+            <option
+              v-for="account of accounts"
+              v-bind:value="account.number"
+              class=" bg-beigeFondo/10 text-azulOscuro"
+            >
+              {{account.number}}
+            </option>
+          </select>
+
+          <label for="" class="text-semibold text-beige">Select Payments</label>
+        <select name="from" id="from"  class=" text-beige/50 text-sm bg-beigeFondo/10 rounded-lg h-8 w-72  text-lg   font-semibold  " v-model="paymentSelected" >
+          <option
+            value=""
+            disabled
+            selected
+            class="bg-beigeFondo/10 text-azulOscuro"
+          >
+            Select Payments
+          </option>
+
+          <option
+            v-for="payment of loanSelected.payments"
+            v-bind:value="payment"
+            class=" bg-beigeFondo/10 text-azulOscuro"
+            
+          >
+            {{payment}}
+          </option>
+        </select>
+
+        <label for="" class="text-semibold text-beige">Enter Amount</label>
+        <input type="number" class="bg-beigeFondo/10 rounded-lg h-8 w-72 text-beigeFondo/50 text-md placeholder:text-beige/50 placeholder:text-sm font-semibold ml-4 py-2" v-model="amountSelected">
+          
+
+          
+          
+        
+       
+        
+       </form>
+        
+       <button class="bg-verdeClaro p-2 text-azulOscuro  w-[90%] rounded-3xl mt-4 font-semibold" @click.prevent="createLoan()"> DONE
+       </button >
+     
+
+      </main>
+
+
+     
+
+      <footer class="bg-azulOscuro h-24 flex grow-0"></footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <script src="loans.js"></script>
+  </body>
+</html>
