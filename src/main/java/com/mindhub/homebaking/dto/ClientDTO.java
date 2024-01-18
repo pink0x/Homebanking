@@ -1,9 +1,6 @@
 package com.mindhub.homebaking.dto;
 
-import com.mindhub.homebaking.models.Card;
-import com.mindhub.homebaking.models.Client;
-import com.mindhub.homebaking.models.ClientLoan;
-import com.mindhub.homebaking.models.Loan;
+import com.mindhub.homebaking.models.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +19,8 @@ public class ClientDTO {
 
     private List<CardDTO> cards;
 
+    private RoleType roleType;
+
 
 
 
@@ -30,9 +29,10 @@ public class ClientDTO {
         name = client.getName();
         lastName = client.getLastName();
         email= client.getEmail();
-        accounts = client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
+        accounts = client.getAccounts().stream().filter(account -> account.getStatus()).map(account -> new AccountDTO(account)).collect(Collectors.toList());
         loans = client.getClientLoans().stream().map(clientLoan -> new ClientLoanDTO(clientLoan)).collect(Collectors.toList());
         cards = client.getClientCards().stream().map(card -> new CardDTO(card)).collect(Collectors.toList());
+        roleType = client.getRole();
 
 
     }
@@ -68,5 +68,10 @@ public class ClientDTO {
 
     public List<CardDTO> getCards() {
         return cards;
+    }
+
+
+    public RoleType getRoleType() {
+        return roleType;
     }
 }

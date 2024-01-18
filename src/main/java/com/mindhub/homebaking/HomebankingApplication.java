@@ -19,9 +19,9 @@ public class HomebankingApplication {
         SpringApplication.run(HomebankingApplication.class, args);
     }
 
-//    @Autowired
-//    public PasswordEncoder passwordEncoder;
-//
+    @Autowired
+    public PasswordEncoder passwordEncoder;
+
 //    @Bean
 //    public CommandLineRunner initData(ClientRepository clientRepository,
 //                                      AccountRepository accountRepository,
@@ -40,11 +40,13 @@ public class HomebankingApplication {
 //            Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("123456"), RoleType.CLIENT);
 //            Client juanTopo = new Client("Juan Topo", "Makelele", "juantopoMake@lele.com", passwordEncoder.encode("123456"), RoleType.CLIENT);
 //            Client farfaria = new Client("Farafaria", "Lacomilla", "fafafa@laco.com", passwordEncoder.encode("123456"), RoleType.CLIENT);
+//            Client admin = new Client("Sofia", "Pinco", "sofia@pinco.com", passwordEncoder.encode("123456"),RoleType.ADMIN);
 //
 //
 //            clientRepository.save(melba);
 //            clientRepository.save(juanTopo);
 //            clientRepository.save(farfaria);
+//            clientRepository.save(admin);
 //
 ////ACCOUNTS
 //            Account account1 = new Account("VIN-001", 5000d, LocalDate.now());
@@ -59,10 +61,10 @@ public class HomebankingApplication {
 //
 ////TRANSACTIONS
 //            Transaction trans1 = new Transaction(TransactionType.CREDIT, 1200, "Happy birthday, aint Melba!", LocalDate.now());
-//            Transaction trans2 = new Transaction(TransactionType.DEBIT, -850, "Rent payment", LocalDate.now());
+//            Transaction trans2 = new Transaction(TransactionType.DEBIT, 850, "Rent payment", LocalDate.now());
 //
 //            Transaction trans3 = new Transaction(TransactionType.CREDIT, 345, "Pension payment", LocalDate.now());
-//            Transaction trans4 = new Transaction(TransactionType.DEBIT, -1500, "Plane tickets", LocalDate.now());
+//            Transaction trans4 = new Transaction(TransactionType.DEBIT, 1500, "Plane tickets", LocalDate.now());
 //
 //            account1.addTransaction(trans1);
 //            account1.addTransaction(trans2);
@@ -79,9 +81,9 @@ public class HomebankingApplication {
 //
 //
 ////LOANS
-//            Loan hipotecario = new Loan("Hipotecario", 500000, List.of(12, 24, 36, 48, 60));
-//            Loan personal = new Loan("Personal", 100000, List.of(6, 12, 24));
-//            Loan automotriz = new Loan("automotriz", 300000, List.of(6, 12, 24, 36));
+//            Loan hipotecario = new Loan("Hipotecario", 500000, List.of(12, 24, 36, 48, 60),1.5);
+//            Loan personal = new Loan("Personal", 100000, List.of(6, 12, 24),1.2);
+//            Loan automotriz = new Loan("automotriz", 300000, List.of(6, 12, 24, 36),1.35);
 //
 //
 //            loanRepository.save(hipotecario);

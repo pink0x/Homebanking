@@ -41,7 +41,7 @@
             >Cards</a
           >
           <a
-            href="#"
+            href="loans.html"
             class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
             >Loans</a
           >
@@ -70,10 +70,10 @@
           class="flex flex-col gap-12 md:gap-18 my-12 md:my-18 items-center flex-wrap lg-flex-row"
         >
           <div
-            v-for="account of accounts"
+            v-for="account of accounts" 
             class="card flex flex-col md:items-center min-w-1/4 py-4 gap-4 rounded-xl shadow-lg p-4 text-beigeFondo md:flex-row justify-between w-1/2"
           >
-            <div>
+            <div v-if="account.status ">
               <p class="font-thin">Account number:</p>
               <p class="text-verdeClaro font-semibold">{{account.number}}</p>
             </div>
@@ -94,6 +94,26 @@
               class="cardButton flex bg-verdeClaro p-2 rounded-md text-white font-semibold self-end"
               >More details</a
             >
+            <div class="bg-azulOscuro rounded-md p-2" @click.prevent="deleteAccount(account.number)">
+             <button class="text-xs text-red-500">Delete Account</button>
+            </div>
+          </div>
+         
+        </div>
+        <div class="flex justify-center">
+          <button class="bg-azulOscuro text-beige p-4 rounded-md" @click.prevent="showModalCreate()"> CREATE NEW ACCOUNT</button>
+
+          <div class="bg-azulOscuro p-4 gap-4" v-if="modalCreate == true">
+
+            <label class="text-beige mr-6">Select a Type of account</label>
+
+            <select name="" id="" v-model="accountType" >
+              <option value="AHORRO" >AHORRO</option>
+              <option value="CORRIENTE"> CORRIENTE</option>
+            </select>
+
+            <button class="bg-verdeClaro p-2 text-azulOscuro  w-[90%] rounded-3xl mt-4 font-semibold" @click.prevent="createAccount()">CREATE</button>
+
           </div>
         </div>
 
@@ -119,10 +139,48 @@
                       currency: 'USD'}).
                       format(loan.amount)}}</td>
                     <td>{{loan.payments}}</td>
+                    <td><button class="bg-verdeClaro px-2 rounded-md" @click.prevent="showModal()">Pay</button></td>
+                    
                   </tr>
+                  <td v-if="modal" class="flex">
+                    <label for="">Select an account</label>
+                    <select class="border-2 border-azulOscuro rounded-sm ml-6" name="" id=""  class=" " v-model="accountNumber">
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        class=""
+                      >
+                        Select an account
+                      </option>
+      
+                      <option
+                        v-for="account of accounts"
+                        v-bind:value="account.number"
+                        class=" bg-beigeFondo/10 text-azulOscuro"
+                      >
+                        {{account.number}}
+                      </option>
+                      
+
+                      
+                    </td>
+                    <button class="bg-azulOscuro px-2 rounded-md text-beige" v-if="modal" @click.prevent = "payLoan(loan.id)">PAY</button>
+                   
+                  
                 </template>
+               
+       
               </tbody>
+              
             </table>
+
+           
+
+            
+            
+
+            
 
           </div>
           <a href="loans.html" class="bg-verdeClaro p-2 text-azulOscuro  w-[90%] rounded-3xl mt-4 font-semibold" > NEW LOAN

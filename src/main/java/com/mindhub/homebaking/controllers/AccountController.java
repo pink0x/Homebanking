@@ -19,7 +19,7 @@ import java.time.LocalDate;
 
 
 @RestController
-@RequestMapping("/api/accounts")
+@RequestMapping ("/api/accounts")
 public class AccountController {
     @Autowired
     private AccountRepository accountRepository;
@@ -28,9 +28,16 @@ public class AccountController {
     @Autowired
     private CardRepository cardRepository;
 
-    @RequestMapping("/{id}")
-    public AccountDTO getOneAccount(@PathVariable Long id) {
-        return new AccountDTO(accountRepository.findById(id).orElse(null));
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneAccount(@PathVariable Long id
+                                              ) {
+        Account account = accountRepository.findById(id).orElse(null);
+
+        if (!account.getStatus()){
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+
+        }
+        return new ResponseEntity<Object>("SUCCES", HttpStatus.CREATED);
     }
 
 
@@ -51,8 +58,69 @@ public class AccountController {
         client.addAccount(account);
         accountRepository.save(account);
 
+
+
         return new ResponseEntity<>("Cuenta creada con exito", HttpStatus.CREATED);
 
+
+    }
+
+
+    @PostMapping("/create")
+    public ResponseEntity<String> createNewAccount(Authentication authentication,
+                                                   @RequestParam AccountType accountType) {
+
+
+        Client client = clientRepository.findByEmail(authentication.getName());
+
+        String number;
+
+        do {
+            number = "VIN" + getRandomNumber(001, 99999999);
+
+        } while (accountRepository.existsByNumber(number));
+
+        Account account = new Account(number, 0, LocalDate.now(),accountType);
+        client.addAccount(account);
+        accountRepository.save(account);
+
+
+
+        return new ResponseEntity<>("Cuenta creada con exito", HttpStatus.CREATED);
+
+
+    }
+
+
+
+
+
+    @PatchMapping
+    public ResponseEntity<String> deleteAccount (@RequestParam String number,
+                                              Authentication authentication){
+
+        Client client = clientRepository.findByEmail(authentication.getName());
+        Account accountDelete = accountRepository.findByNumber(number);
+
+
+        if (!client.getEmail().equals(authentication.getName())) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+        if (accountDelete.getBalance() > 0){
+            return new ResponseEntity<>("You can't delete an account with positive balance", HttpStatus.UNAUTHORIZED);
+        }
+
+
+
+        accountDelete.setStatus(false);
+
+
+        accountRepository.save(accountDelete);
+
+
+
+        return new ResponseEntity<>("Card deleted", HttpStatus.CREATED);
 
     }
 

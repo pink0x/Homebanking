@@ -1,0 +1,94 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../images/SB.png" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Cards</title>
+  </head>
+  <body class="flex flex-col">
+    <div id="app">
+      <header class="flex flex-col items-center gap-2 mb-10">
+        <div
+          class="flex flex-col items-center gap-2 bg-azulOscuro w-full justify-center md:flex-row gap-6 py-4"
+        >
+          <img src="../images/SB.png" alt="" class="flex h-16" />
+          <img src="../images/StandBank.png" alt="" class="flex h-8" />
+        </div>
+
+        <nav
+          class="flex flex-col font-semibold text-lg md:flex-row md:justify-around md:w-full md:text-2xl md:items-bottom md:h-10"
+        >
+          <a
+            href="accounts.html"
+            class="  md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Accounts</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+            >Cards</a
+          >
+          <a
+            href="loans.html"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Loans</a
+          >
+          <a
+            href="#"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            >Transactions</a
+          >
+        </nav>
+      </header>
+
+      <main class="m-20 grow-1 text-azulOscuro">
+
+        <h1 class="text-3xl font-bold text-azulOscuro mb-8 md:text-5xl font-semibold"> CREATE NEW CARD</h1>
+
+        <form action="" class="card flex flex-col p-24 w-[30rem] rounded-lg ">
+            <label for="" class="text-beige">Select a Color</label>
+            <select v-model="colorSelected" class="mb-12 rounded-md">
+                <option 
+                > GOLD </option>
+                <option 
+                > TITANIUM </option>
+                <option 
+                > SILVER </option>
+            </select>
+
+            <label for="" class="text-beige">Select a Type</label>
+            <select v-model="typeSelected" class="mb-12 rounded-md">
+                <option 
+                > CREDIT </option>
+                <option 
+                > DEBIT </option>
+               
+            </select>
+
+            <button @click.prevent="createCard()" class="bg-verdeClaro p-2 text-azulOscuro rounded-lg mt-4 font-semibold">CREATE</button>
+
+
+
+        </form>
+
+        
+
+     
+        
+     
+
+      </main>
+
+
+     
+
+      <footer class="bg-azulOscuro h-24 flex grow-0"></footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <script src="createCard.js"></script>
+  </body>
+</html>

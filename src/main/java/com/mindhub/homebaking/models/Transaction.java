@@ -14,6 +14,8 @@ public class Transaction {
  private String description;
  private LocalDate date;
 
+ private Double currentBalance;
+
     @ManyToOne
     @JoinColumn(name = "account")
     private Account account;
@@ -27,6 +29,16 @@ public class Transaction {
         this.amount = amount;
         this.description = description;
         this.date = date;
+
+    }
+
+    public Transaction(TransactionType type, double amount, String description, LocalDate date,Double currentBalance) {
+        this.type = type;
+        this.amount = amount;
+        this.description = description;
+        this.date = date;
+        this.currentBalance = currentBalance;
+
     }
 
 
@@ -75,5 +87,13 @@ public class Transaction {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Double getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(Double currentBalance) {
+        this.currentBalance = currentBalance;
     }
 }

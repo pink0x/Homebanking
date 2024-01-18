@@ -1,5 +1,6 @@
 package com.mindhub.homebaking.controllers;
 
+import com.mindhub.homebaking.dto.CardDTO;
 import com.mindhub.homebaking.models.*;
 import com.mindhub.homebaking.repositories.CardRepository;
 import com.mindhub.homebaking.repositories.ClientRepository;
@@ -8,13 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/clients/current/cards")
@@ -26,6 +23,39 @@ public class CardController {
     @Autowired
     ClientRepository clientRepository;
 
+
+    @PatchMapping
+    public ResponseEntity<String> deleteCard (@RequestParam String number,
+                                              Authentication authentication){
+
+        Client client = clientRepository.findByEmail(authentication.getName());
+
+        if (!client.getEmail().equals(authentication.getName())) {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+
+
+        Card cardDelete = cardRepository.findByNumber(number);
+        cardDelete.setStatus(false);
+
+//        changeStatus (cardDelete);
+        cardRepository.save(cardDelete);
+
+
+
+        return new ResponseEntity<>("Card deleted", HttpStatus.CREATED);
+
+    }
+
+
+
+//    private void changeStatus (Card card){
+//        Boolean status = card.getStatus();
+//        if (status = true){
+//            card.setStatus(false);
+//        }
+
+//    }
 
     @PostMapping
     public ResponseEntity<Object> createCard(@RequestParam CardType cardType,

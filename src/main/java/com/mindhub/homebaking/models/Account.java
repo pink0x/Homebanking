@@ -16,6 +16,10 @@ public class Account {
     private String number;
     private LocalDate date;
 
+    private Boolean status = true;
+
+    private AccountType accountType ;
+
     @ManyToOne
     @JoinColumn(name = "client")
     private Client client;
@@ -31,6 +35,13 @@ public class Account {
         this.number = number;
         this.balance = balance;
         this.date = date;
+    }
+
+    public Account(String number, double balance, LocalDate date, AccountType accountType) {
+        this.number = number;
+        this.balance = balance;
+        this.date = date;
+        this.accountType = accountType;
     }
 
 
@@ -91,4 +102,19 @@ public class Account {
     }
 
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
 }

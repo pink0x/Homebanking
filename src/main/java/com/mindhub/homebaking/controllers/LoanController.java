@@ -6,6 +6,7 @@ import com.mindhub.homebaking.dto.LoanDTO;
 
 
 import com.mindhub.homebaking.models.*;
+import com.mindhub.homebaking.repositories.ClientLoanRepository;
 import com.mindhub.homebaking.services.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.mindhub.homebaking.models.RoleType.ADMIN;
 
 @RestController
 @RequestMapping("/api")
@@ -31,6 +34,8 @@ public class LoanController {
     private AccountService accountService;
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+    private ClientLoanRepository clientLoanRepository;
 
 
 
@@ -51,7 +56,7 @@ public class LoanController {
         Loan loan = loanService.findById(loanApplicationDTO.getId());
         Client client = clientService.getAuthenticatedClient(authentication);
 
-        Double amount = loanApplicationDTO.getAmount()*1.2;
+//        Double amount = loanApplicationDTO.getAmount()*1.2;
 
         if (loanApplicationDTO.getAmount() > loan.getMaxAccount()) {
             return new ResponseEntity<>("You've reached the max amount available", HttpStatus.FORBIDDEN);
@@ -80,7 +85,7 @@ public class LoanController {
         account.addTransaction(transactionLoan);
         transactionService.saveTransaction(transactionLoan);
 
-        ClientLoan clientLoan = new ClientLoan(loan.getName(), amount, loanApplicationDTO.getPayments());
+        ClientLoan clientLoan = new ClientLoan(loan.getName(), loanApplicationDTO.getAmount(), loanApplicationDTO.getPayments());
         client.addClientLoan(clientLoan);
         loan.addClientLoan(clientLoan);
 
@@ -91,6 +96,64 @@ public class LoanController {
 
 
     }
+
+    @PatchMapping ("/loans")
+    public ResponseEntity<String> payLoan (Authentication authentication,
+                                           @RequestParam Long Id,
+                                           @RequestParam String number){
+
+        Client client = clientService.getAuthenticatedClient(authentication);
+
+        ClientLoan clientLoan = clientLoanRepository.findById(Id).orElse(null);
+        Account account = accountService.findByNumber(number);
+        double interest = clientLoan.getLoan().getInterest();
+
+        Double paymentAmount = (clientLoan.getAmount() / clientLoan.getPayments()) * interest ;
+        System.out.println(paymentAmount);
+
+        if (client == null ){
+            return new ResponseEntity<>("You're not allowed to do this", HttpStatus.FORBIDDEN);
+        }
+
+        if (account.getBalance() < paymentAmount){
+            return new ResponseEntity<>(" insufficient funds", HttpStatus.FORBIDDEN);
+        }
+
+        clientLoan.setAmount(clientLoan.getAmount() - paymentAmount);
+        clientLoan.setPayments(clientLoan.getPayments() - 1);
+        clientLoanRepository.save(clientLoan);
+
+        account.setBalance(account.getBalance() - paymentAmount);
+
+        accountService.saveAccount(account);
+
+
+        return new ResponseEntity<>("Loan payed", HttpStatus.CREATED);
+
+    }
+
+
+    @PostMapping ("/loans/create")
+    public ResponseEntity<String> createLoan(Authentication authentication,
+                                             @RequestParam String name,
+                                             @RequestParam double maxAmount,
+                                             @RequestParam List <Integer> payments,
+                                             @RequestParam double interest
+                                             ) {
+        Client client = clientService.getAuthenticatedClient(authentication);
+
+        if (client.getRole() != ADMIN){
+            return new ResponseEntity<>("You're not allowed to do this", HttpStatus.FORBIDDEN);
+        };
+
+        Loan loan = new Loan(name, maxAmount, payments, interest);
+        loanService.saveLoan(loan);
+
+        return new ResponseEntity<>("Loan created", HttpStatus.CREATED);
+
+    }
+
+
 }
 
 //    public ResponseEntity<String> getLoanApplication (Authentication authentication,

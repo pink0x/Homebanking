@@ -16,6 +16,7 @@ public class Card {
      private Integer cvv;
     private LocalDate fromDate;
     private LocalDate thruDate;
+    private Boolean status = true;
 
     @ManyToOne
     @JoinColumn(name = "client")
@@ -28,6 +29,7 @@ public class Card {
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
+
     }
 
     public Card() {
@@ -95,5 +97,13 @@ public class Card {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Boolean getStatus() {
+        return status != null ? status : Boolean.TRUE;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

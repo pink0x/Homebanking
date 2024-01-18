@@ -37,14 +37,18 @@ public class TransactionController {
                                                     @RequestParam Double amount,
                                                     @RequestParam String accountNumberDestiny,
                                                     @RequestParam String description,
+
+
                                              Authentication authentication){
-
-        Transaction transactionDebit = new Transaction(DEBIT , amount, description, LocalDate.now());
-        Transaction transactionCredit = new Transaction(CREDIT, amount, description, LocalDate.now());
-
 
         Account accountOrigin = accountRepository.findByNumber(accountNumberOrigin);
         Account accountDestiny = accountRepository.findByNumber(accountNumberDestiny);
+
+        Transaction transactionDebit = new Transaction(DEBIT , amount, description, LocalDate.now(),accountOrigin.getBalance() - amount);
+        Transaction transactionCredit = new Transaction(CREDIT, amount, description, LocalDate.now(),accountDestiny.getBalance() + amount);
+
+
+
 
         accountOrigin.addTransaction(transactionDebit);
         accountDestiny.addTransaction(transactionCredit);
@@ -53,8 +57,22 @@ public class TransactionController {
         accountOrigin.setBalance(accountOrigin.getBalance() - amount);
         accountDestiny.setBalance(accountDestiny.getBalance() + amount);
 
+//        Double currentBalanceCredit = transactionCredit.getCurrentBalance();
+//        Double currentBalanceDebit  = transactionDebit.getCurrentBalance();
+//
+//        if (transactionCredit.getType() == DEBIT){
+//            currentBalanceDebit = accountOrigin.getBalance() - amount;
+//        }
+//        if (transactionCredit.getType() == CREDIT){
+//            currentBalanceCredit = accountOrigin.getBalance() + amount;
+//        }
+
+
         transactionRepository.save(transactionCredit);
         transactionRepository.save(transactionDebit);
+
+
+
 
 
         if (accountDestiny == null){

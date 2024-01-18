@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital@1&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/images/SB.png" type="image/x-icon" />
     <link rel="stylesheet" href="./assets/pages/styles.css" />
     <title>Stand Bank</title>
@@ -11,19 +14,35 @@
     <div id="app">
         <main id="mainIndex" class="grow">
           
-          <img id="logo" src="assets/images/SBblue.png" alt="" class=" flex object-contain w-[40rem] md:absolute md:top-10 md:left-10">
+          <div class="flex mt-[5rem] ml-[5rem] items-center gap-10">
+            <img id="logo" src="assets/images/StandBankLogo.png" alt="" class=" flex object-contain w-[15rem] ">
 
-          <h2 id="title" class="lg:absolute md: left-20   font-semibold text-azulOscuro"> <b> You can trust us.</b> <br> Or maybe not, but who cares?</h2>
+            <div class=" flex flex-col justify-content-bottom" >      
+              <h2 id="title" class="textoIndex font-semibold text-azulOscuro ">  You can trust us.  </h2>
+            <h2 class="textoIndex text-[0.8rem] text-azulOscuro/50 ">Or maybe not, but who cares?</h2>               
+              </div>
 
           
 
+          </div >
+          
 
-            
+
+          
+          <p class="textoIndex text-azulOscuro  w-[40rem] ml-24 mt-10 z-20 text-[1.3rem] ">At Stand Bank, we prioritize your confidentiality,<br> providing you with the tools for discreet financial <br> control.<br>   Join us in experiencing a banking <br> environment that values the seriousness <br>and privacy of your financial <br>endeavors.</p>
+         
+          
+
+
+            <!-- ----------------------------FORMULARIO ------------------------------------------------->
+
+
+            <!-- REGISTER -->
 
             <form action="" class="formulario" v-if ="registered" @submit.prevent>
               <div class="formNav "> 
-                <a href="" @click="registrado " @submit.prevent class="w-1/3">LOG IN</a>
-                <a href="" class="border-b-[0.2rem] border-verdeClaro w-1/3 ">SIGN UP</a>
+                <button @click="registrado " @submit.prevent class="w-1/3">LOG IN</button>
+                <button class="border-b-[0.2rem] border-verdeClaro w-1/3 ">SIGN UP</button>
               </div>
 
              <div class="flex flex-col  gap-1 w-[100%]">
@@ -53,11 +72,11 @@
                 <button class="bg-verdeClaro p-2 text-azulOscuro w-[90%]  rounded-3xl mt-2 font-semibold" @click.prevent="register()"> SIGN UP
                 </button>
 
-                
-                <!-- <button type="submit" @click="registrado " @submit.prevent>Already have an account?</button > -->
              
 
             </form>
+
+            <!-- LOG IN -->
 
             <form action="" class="formulario " v-else>
               <div class="formNav"> 

@@ -51,7 +51,7 @@
             <div class="flex justify-around" >
                 <div class="flex gap-4">
                     <p class="text-lg">Account number:</p>
-                    <p class="text-xl text-verdeClaro font-bold">{{account.name}}</p>
+                    <p class="text-xl text-verdeClaro font-bold">{{account.number}}</p>
                 </div >
                 <div class="flex gap-4">
                     <p class="text-lg">Creation date:</p>
@@ -79,8 +79,9 @@
                     <tr class="text-left   text-azulOscuro">
                         <th>Type:</th>
                         <th>Date:</th>
-                        <th>Description </th>
-                        <th>Amount </th>
+                        <th>Description: </th>
+                        <th>Amount: </th>
+                        <th>Balance:</th>
                     </tr>                
                 </thead>
                 <tbody >               
@@ -88,13 +89,32 @@
                         <template v-for="transaction of transactions" class="flex flex-row gap-2 mt-4 ">
                             <tr class="border-b-[1px] border-azulOscuro/20">    
                                    <td v-if="transaction.type === 'CREDIT'" class="text-verdeClaro font-semibold" > {{transaction.type}} </td>
+
+
+
+
+                                  
                                     <td v-else class="text-rose-600 font-semibold"> {{transaction.type}} </td>
                                     <td> {{transaction.date}} </td>
                                     <td> {{transaction.description}} </td>
-                                    <td> {{Intl.NumberFormat('en-US',
+                                    <td v-if="transaction.type === 'DEBIT'"> -{{Intl.NumberFormat('en-US',
                                       {style: 'currency',
                                       currency: 'USD'}).
-                                      format(transaction.amount)}} </td>
+                                      format(transaction.amount)}}
+                                     </td>
+                                     <td v-else> {{Intl.NumberFormat('en-US',
+                                      {style: 'currency',
+                                      currency: 'USD'}).
+                                      format(transaction.amount)}}
+                                     </td>
+                                     <td> 
+                                      
+                                    
+                                     {{Intl.NumberFormat('en-US',
+                                     {style: 'currency',
+                                     currency: 'USD'}).
+                                     format(transaction.currentBalance)}}
+                                    </td>
     
                             </tr>
                             

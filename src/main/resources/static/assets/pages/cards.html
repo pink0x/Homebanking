@@ -52,11 +52,14 @@
           <section class="flex flex-row justify-center gap-16">
      <div v-for="card of cards" >
        
-            <div v-if="card.cardType === 'CREDIT'"  class=" ">
+            <div v-if="card.cardType === 'CREDIT'  && card.status"  class=" ">
                 <h2 class="text-xl font-semibold text-azulOscuro md:text-3xl mb-6">
                     Credit
                   </h2>
                 <div id="creditCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo" >
+                  <div v-if="card.thruDate > new Date()">
+                    <p class="text-red-500">"This card is expired</p>
+                  </div>
                     <p class="font-semibold text-2xl tracking-[0.3rem]"> {{card.number}}</p>
                     <p class="font-semibold text-xl drop-shadow-xl"> {{card.cardHolder.toUpperCase()}}</p>
                     <div class="flex gap-16">
@@ -64,15 +67,21 @@
                     <p class="leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{formatDate(card.thruDate)}}</b></p>
     
                     </div>
+                   
+                      <button class=" bg-azulOscuro w-24 text-white px-4 py-2 rounded-md mt-6" @click.prevent="deleteCard(card.number)">Delete</button>
+                    
                     
                 </div>
               </div>
     
-              <div v-if="card.cardType === 'DEBIT'"  class="">
+              <div v-if="card.cardType === 'DEBIT' && card.status"  class="">
                 <h2 class="text-xl font-semibold text-azulOscuro md:text-3xl mb-6">
                     Debit
                   </h2>
                 <div id="debitCard" class="flex h-60 w-[25rem] flex-col gap-2 pt-28 pl-6 text-beigeFondo " >
+                  <div v-if="card.thruDate > new Date()">
+                    <p class="text-red-500">"This card is expired</p>
+                  </div>
                     <p class="cardText font-semibold text-2xl tracking-[0.3rem]"> {{card.number}}</p>
                     <p class="cardText font-semibold text-xl"> {{card.cardHolder.toUpperCase()}}</p>
                     <div class="flex gap-16">
@@ -80,6 +89,8 @@
                     <p class="cardText leading-none gap-8"> <span class="text-[0.6rem] ">EXPIRES <br>END</span>  <b>{{formatDate(card.thruDate)}}</b></p>
     
                     </div>
+                   
+                    <button class=" bg-azulOscuro w-24 text-white px-4 py-2 rounded-md mt-6" @click.prevent="deleteCard(card.number)">Delete</button>
                     
                 </div>
               </div>
@@ -91,7 +102,7 @@
 
        
 
-        <a href="createCard.html" class=" flex justify-center bg-verdeClaro p-2 text-azulOscuro  w-[20rem] rounded-3xl  font-semibold m-auto" >NEW CARD</a>
+        <a href="createCard.html" class=" flex justify-center bg-verdeClaro p-2 text-azulOscuro  w-[20rem] rounded-3xl  font-semibold mx-auto my-24" >NEW CARD</a>
         
         
      

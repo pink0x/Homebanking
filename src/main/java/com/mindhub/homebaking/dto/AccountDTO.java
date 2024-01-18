@@ -17,6 +17,8 @@ public class AccountDTO {
     private String number;
     private LocalDate date;
 
+    private Boolean status = true;
+
     private List<TransactionDTO> transactions = new ArrayList<>();
 
     public AccountDTO (Account account){
@@ -24,7 +26,7 @@ public class AccountDTO {
         balance = account.getBalance();
         number = account.getNumber();
         date = account.getDate();
-        transactions = account.getTransactions().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
+        transactions = account.getTransactions().stream().filter(accountDTO-> account.getStatus()).map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
 
     }
 
@@ -71,6 +73,11 @@ public class AccountDTO {
         this.transactions = transactions;
     }
 
+    public  Boolean getStatus() {
+        return status;
+    }
 
-
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }

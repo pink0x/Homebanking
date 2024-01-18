@@ -65,6 +65,7 @@ background: linear-gradient(307deg, rgba(113,143,125,1) 0%, rgba(121,167,140,1) 
     
 } 
 
+
 .formulario{
     position: absolute;
     display: flex;
@@ -74,7 +75,9 @@ background: linear-gradient(307deg, rgba(113,143,125,1) 0%, rgba(121,167,140,1) 
     color:#E6DDC4;
     align-items: center;
     gap:1rem;
-    background-color: #181d31e2;
+   
+    
+    background-color: #181d31e2; 
     top:6rem;
     right: 10rem;
     border-radius: 0.5rem;
@@ -83,11 +86,26 @@ background: linear-gradient(307deg, rgba(113,143,125,1) 0%, rgba(121,167,140,1) 
 }
 #title{
     font-size: 2.5rem;
-    position: absolute;
-    top: 12rem;
-    text-align: center;
+  
+    text-align: start;
 
 }
+
+.blur{
+    background: rgba(255, 255, 255, 0.193);
+
+backdrop-filter: blur(5px);
+
+}
+
+.textoIndex{
+    font-family: 'Spectral', serif;
+    text-decoration: none;
+    color:  rgb(3, 3, 35);
+   
+}
+
+
 
 @media only screen and (max-width:425px) {
     .formulario{

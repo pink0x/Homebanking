@@ -52,6 +52,9 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
+    public void saveLoan (Loan loan){loanRepository.save(loan);}
+
+    @Override
     public ResponseEntity<String> getLoanApplication(String email, LoanApplicationDTO loanApplicationDTO) {
         return null;
     }

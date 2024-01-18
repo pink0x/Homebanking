@@ -13,6 +13,11 @@ public class AccountServiceImpl implements AccountService {
     private AccountRepository accountRepository;
 
     @Override
+    public void saveAccount(Account account) {
+        accountRepository.save(account);
+    }
+
+    @Override
     public boolean existsByNumber(String number) {
         return accountRepository.existsByNumber(number);
     }

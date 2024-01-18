@@ -10,6 +10,14 @@ let app = createApp({
       accounts: [],
       accountDate: "",
       loans: [],
+      accountNumber:"",
+      modal:false,
+      modalCreate:false,
+
+      loanID: "",
+      accountNumber: "",
+
+      accountType:"",
     };
   },
 
@@ -38,9 +46,69 @@ let app = createApp({
           this.name = this.data.fullName;
           this.accountDate = this.accounts.date
           this.loans = this.data.loans;
+          this.accountNumber = this.accounts.number
           console.log(this.data)
+          console.log(this.accountType)
         })
         .catch((error) => console.log(error));
     },
+    showModal(){
+      this.modal = true
+      console.log("holus")
+
+    },
+
+    showModalCreate(){
+      this.modalCreate =true
+      console.log(this.accountType)
+    },
+
+    payLoan(id){
+      axios.patch ("/api/loans?Id=" + id + "&number=" + this.accountNumber)
+      .then(response =>{
+       
+        console.log(response)
+      })
+      .catch(error => console.log(error))
+    },
+    changeStatus(status){
+      if (status == true) {
+        this.status = false
+      }
+
+      
+    },
+
+    createAccount(){
+      axios.post("/api/accounts/create?accountType="+this.accountType)
+        .then(response =>{
+
+          this.changeStatus(this.status);
+          
+          
+  
+          console.log(this.status)
+          console.log(response)
+        })
+        .catch(error => console.log(error))
+      
+      },
+    
+
+    deleteAccount(accountNumber){
+      axios.patch("/api/accounts?number=" + accountNumber)
+      .then(response =>{
+
+        this.changeStatus(this.status);
+        
+        
+
+        console.log(this.status)
+        console.log(response)
+      })
+      .catch(error => console.log(error))
+    }
+
+    
   },
 }).mount("#app");

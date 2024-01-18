@@ -26,17 +26,17 @@
             >Accounts</a
           >
           <a
-            href="#"
-            class="md:w-1/6 md:pb-10 text-center border-b-[0.2rem] border-verdeClaro text-azulOscuro mb-2 font-bold"
+            href="cards.html"
+            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50 mb-2 "
             >Cards</a
           >
           <a
             href="#"
-            class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
+            class="md:w-1/6 md:pb-10 text-center border-b-[0.2rem] border-verdeClaro font-bold text-azulOscuro"
             >Loans</a
           >
           <a
-            href="#"
+            href="transactions.html"
             class="md:w-1/6 md:pb-10 text-center hover:border-b-2 text-azulOscuro/50"
             >Transactions</a
           >
@@ -45,20 +45,46 @@
 
       <main class="m-20 grow-1 text-azulOscuro">
 
-       <div v-for="loan of loans">
-        <div class="flex">
-            <p>{{loan.name}} </p>
-            <p> {{loan.payments}} </p>
-            <p> {{loan.amount}} </p>
+        <h1 class="text-2xl font-semibold m-4">LOANS AVAILABLE</h1>
+
+       <div class="" v-for="loan of loans">
+        <div class="flex justify-between bg-gray-500/50 p-4 mb-4">
+          <div class="flex flex-col">
+            <h1 class="text-azulOscuro font-semibold">Loan name</h1>
+            <p class="font-semibold text-azulOscuro text-lg">{{loan.name}} </p>
+
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-azulOscuro font-semibold">Loan Payments</h1>
+            <p>{{loan.payments}} </p>
+
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-azulOscuro font-semibold">Loan Max Amount</h1>
+            <p> {{Intl.NumberFormat('en-US',
+              {style: 'currency',
+              currency: 'USD'}).
+              format(loan.amount)}} </p>
+
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-azulOscuro font-semibold">Interests</h1>
+            <p> % {{Math.round(loan.interest % 1*100)}}  </p>
+
+          </div>
+           
+           
 
 
         </div>
         
        </div>
 
-       <form action="" class="card flex flex-col" >
+       <h1 class="text-2xl font-semibold m-4">NEW LOAN</h1>
 
-        <label for="" class="text-semibold text-beige">Select a Laon</label>
+       <form action="" class="card flex flex-col p-6 items-center rounded-md" >
+
+        <label for="" class="text-semibold text-beige" >Select a Loan</label>
         <select name="from" id="from"  class=" text-beige/50 text-sm bg-beigeFondo/10 rounded-lg h-8 w-72  text-lg   font-semibold  " v-model="loanSelected" @change="blbl()">
           <option
             value=""
@@ -129,18 +155,48 @@
           
 
           
-          
+          <p class="text-semibold text-beige">Total amount</p>
+          <div>
+            
+            <p class="text-semibold text-beige" v-if="amountSelected && loanSelected.interest"> {{Intl.NumberFormat('en-US',
+              {style: 'currency',
+              currency: 'USD'}).
+              format(amountSelected * loanSelected.interest)}}</p>
+            
+          </div>
         
        
         
        </form>
         
-       <button class="bg-verdeClaro p-2 text-azulOscuro  w-[90%] rounded-3xl mt-4 font-semibold" @click.prevent="createLoan()"> DONE
+       <button class="bg-verdeClaro p-2 text-azulOscuro  w-[90%] rounded-3xl mt-4 font-semibold" @click.prevent="createClientLoan()"> DONE
        </button >
+
+       <div v-if="clientRole == 'ADMIN'">
+        <button class="bg-azulOscuro text-beige " @click.prevent="showModal()">CREATE NEW LOAN</button>
+       </div>
+
+       <div v-if ="modal">
+
+        <form action="">
+          <input type="text" placeholder="Loan Name" v-model="loanName">
+          <input type="number" placeholder="Loan Max Amount" v-model="loanMaxAmount">
+          <input type="text" placeholder="Loan Payments" v-model="loanPayments">
+          <input type="number" placeholder="Loan Interest" v-model="loanInterest">
+        </form>
+
+        <button @click.prevent="createLoan()">CREATE LOAN</button>
+       </div>
+
+     
      
 
       </main>
-
+      
+      <!-- loanNAme:"",
+      loanMaxAmount:"",
+      loanPayments: [],
+      loanInterest: "", -->
 
      
 

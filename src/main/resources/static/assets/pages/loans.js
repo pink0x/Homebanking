@@ -10,52 +10,106 @@ let app = createApp({
       paymentSelected:"",
       amountSelected:"",
       id: "",
+      client:{},
+      clientRole:"",
+      modal:false,
 
+      loanName:"",
+      loanMaxAmount:"",
+      loanPayments: "",
       
+      loanInterest: "",
       
-      
+      interest: "",
+
+      newLoan:{},
+
+      loan: {},
+
+
+
+
+
+
+
 
     };
   },
 
   created() {
     this.loadData();
+    this.getClient(),
     console.log("holi");
-    this.clientData();
-
     
+      
+
   },
 
   methods: {
-    loadData() {
-      axios.get("/api/loans")
-        .then((response) => {
-          this.loans = response.data;
-         
-          
-          
-          
-         
-          console.log(this.data)
-          console.log(this.loans)
-        })
-        .catch((error) => console.log(error));
-    },
+
+
+
+  getClient(){
+    axios.get("/api/clients/current")
+    .then((response)=>{
+      this.client = response.data;
+      this.clientRole = this.client.roleType
+      this.accounts = this.client.accounts
+      console.log(this.client)
+      console.log(this.clientRole)
+    })
+    .catch((error) => console.log(error));
+  },
+
+  showModal(){
+    if(!this.modal){
+      this.modal = true
+    }
+    else {
+      this.modal = false
+    }
+    
+  },
+  loadData() {
+    axios.get("/api/loans")
+      .then((response) => {
+        this.loans = response.data;
+        
+        
+        
+        
+
+        
+      })
+      .catch((error) => console.log(error));
+  },
+
+ 
+   
+  createLoan (){
+    const loanPaymentsArray = this.loanPayments.split(',').map(Number);
+
+    axios.post('/api/loans/create?name='+this.loanName+'&maxAmount='+this.loanMaxAmount+'&payments='+loanPaymentsArray+'&interest='+this.loanInterest)
+
+    .then((response)=>{
+      this.newLoan = response.data;
+      console.log(this.newLoan)
+      console.log(loanPaymentsArray)
+    })
+
+    .catch((error) => console.log(error));
+
+  },
+
+
+    
     blbl(){
         console.log(this.loanSelected.id)
     },
 
-    clientData(){
-      axios.get("/api/clients/current")
-        .then((response) => {
-          this.data = response.data;
-          this.accounts = this.data.accounts;
-          console.log(this.data)
-        })
-        .catch((error) => console.log(error));
-    },
+   
 
-    createLoan(){
+    createClientLoan(){
         console.log(this.loanSelected.id)
         console.log(this.accountSelected)
         console.log(this.amountSelected)
@@ -63,11 +117,8 @@ let app = createApp({
         const fedeVal = {"id": this.loanSelected.id,
         "amount": this.amountSelected,
         "payments": this.paymentSelected,
-         "accountNumber": this.accountSelected} 
-        //{Id:this.loanSelected.id,
-        // AccountNumber:this.accountSelected,
-        // amount:this.amountSelected,
-        // payments:this.paymentSelected}
+         "accountNumber": this.accountSelected}
+        
         axios.post('/api/loans',fedeVal)
         .then((response) => {
           console.log(response)
@@ -82,10 +133,10 @@ let app = createApp({
        aux = aux.slice(2,7).replace("-","/")
 
       return aux.substring(3,5) + "/" + aux.substring(0,2)
-     
+
     },
 
-    
-    
+
+
   },
 }).mount("#app");

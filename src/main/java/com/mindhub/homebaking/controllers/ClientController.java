@@ -28,14 +28,14 @@ public class ClientController {
     @Autowired
     public PasswordEncoder passwordEncoder;
 
-    @RequestMapping("/all")
+    @GetMapping("/all")
     public List<ClientDTO> getAllClient(){
         return clientRepository.findAll()
                 .stream()
                 .map(client -> new ClientDTO(client))
                 .collect(Collectors.toList());
     }
-    @RequestMapping("/clients/current")
+    @GetMapping("/clients/current")
     public ResponseEntity<ClientDTO> getOneClient(Authentication authentication) {
         Client client = clientRepository.findByEmail(authentication.getName());
         return new ResponseEntity<>(new ClientDTO(client), HttpStatus.OK);

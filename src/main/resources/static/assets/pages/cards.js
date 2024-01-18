@@ -11,10 +11,12 @@ let app = createApp({
       accountDate: "",
       loans: [],
       cards: [],
-      card: "",
+      card: {},
       cardModal:false,
       colorSelected: "",
       typeSelected: "",
+      cardStatus:true,
+      cardNumber:"",
 
     };
   },
@@ -35,9 +37,13 @@ let app = createApp({
           this.accountDate = this.accounts.date
           this.loans = this.data.loans;
           this.cards= this.data.cards;
+          this.card= this.cards.card;       
+
+          
           
           
           console.log(this.data)
+          console.log(this.cardNumber)
         })
         .catch((error) => console.log(error));
     },
@@ -65,6 +71,28 @@ let app = createApp({
       })
       .catch(error => console.log(error))
       
+    },
+
+    changeStatus(status){
+      if (status == true) {
+        this.status = false
+      }
+
+      
+    },
+
+    deleteCard(cardNumber){
+      axios.patch("/api/clients/current/cards?number=" + cardNumber)
+      .then(response =>{
+
+        this.changeStatus(this.status);
+        
+        
+
+        console.log(this.status)
+        console.log(response)
+      })
+      .catch(error => console.log(error))
     }
 
   },

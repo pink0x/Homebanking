@@ -24,8 +24,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.postgresql:postgresql'
+	implementation 'junit:junit:4.13.1'
+	implementation 'junit:junit:4.13.1'
+	implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
 }
 
 tasks.named('test') {

@@ -12,12 +12,15 @@ public class TransactionDTO {
     private String description;
     private LocalDate date;
 
+    private Double currentBalance;
+
 
     public TransactionDTO(Transaction transaction) {
         type = transaction.getType();
         amount = transaction.getAmount();
         description = transaction.getDescription();
         date= transaction.getDate();
+        currentBalance = transaction.getCurrentBalance();
     }
 
 
@@ -53,5 +56,13 @@ public class TransactionDTO {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Double getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(Double currentBalance) {
+        this.currentBalance = currentBalance;
     }
 }

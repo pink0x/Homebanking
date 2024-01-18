@@ -19,6 +19,8 @@ public class LoanApplicationDTO {
 
     private Integer payments;
 
+    private Double interest;
+
 
 
 
@@ -53,5 +55,13 @@ public class LoanApplicationDTO {
 
     public void setPayments(Integer payments) {
         this.payments = payments;
+    }
+
+    public Double getInterest() {
+        return interest;
+    }
+
+    public void setInterest(Double interest) {
+        this.interest = interest;
     }
 }
